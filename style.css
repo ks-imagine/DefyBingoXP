@@ -1,11 +1,10 @@
 * {
   font-family: Tahoma, Geneva, sans-serif;
-  padding-left: 5%;
 }
 
 table {
   border-collapse: collapse;
-  width: 70%;
+  width: 90%;
 }
 table td {
   padding: 15px;
@@ -27,6 +26,10 @@ table tr {
 table tr:nth-child(odd) {
   background-color: #ffffff;
 }
+
+th, tr, td {
+  text-align: left;
+}
 #searchField {
   width: 50%; /* Half-width */
   font-size: 16px;
@@ -41,4 +44,15 @@ table tr:nth-child(odd) {
 
 .hide {
   display: none;
+}
+
+.currentTeam {
+  background-color: rgb(177, 177, 177);
+
+}
+
+.teamSelect:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }

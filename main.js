@@ -20,17 +20,16 @@ async function getapi(url) {
   const response = await fetch(url);
   // Storing data in form of JSON
   var data = await response.json();
-  window.BINGO_OBJECT = data;
-  createPlayerArray(data);
   if (response) {
     hideloader();
   }
+  createPlayerArray(data);
 }
 
 // Create player array
 function createPlayerArray(data) {
   let playerArray = [];
-  for (i = 0; i < data.participants.length; i++) {
+  for (var i = 0; i < data.participants.length; i++) {
     playerArray.push({
       name: data.participants[i].displayName,
       teamName: data.participants[i].teamName,
@@ -42,30 +41,30 @@ function createPlayerArray(data) {
   window.PLAYER_ARRAY = playerArray;
 
   for (var i = 0; i < combatStyles.length; i++) {
-    getCombatData(combatStyles[i], combat_url + combatStyles[i]);
+    getCombatData(combat_url + combatStyles[i]);
   }
 }
 
 // Async function for player combat xp data
-async function getCombatData(style, url) {
+async function getCombatData(url) {
   // Storing response
   const response = await fetch(url);
   var data = await response.json();
   if (response) {
     hideloader();
   }
-  for (i = 0; i < data.participants.length; i++) {
-    for (j = 0; j < window.PLAYER_ARRAY.length; j++) {
+  for (var i = 0; i < data.participants.length; i++) {
+    for (var j = 0; j < window.PLAYER_ARRAY.length; j++) {
       if (data.participants[i].displayName == window.PLAYER_ARRAY[j].name) {
         window.PLAYER_ARRAY[j].combatXP += data.participants[i].progress.gained;
       }
     }
   }
-  getSkillingData();
+  calcSkillingXP();
 }
 
 // Array to calculate skilling XP
-function getSkillingData() {
+function calcSkillingXP() {
   for (var i = 0; i < window.PLAYER_ARRAY.length; i++) {
     window.PLAYER_ARRAY[i].skillingXP =
       window.PLAYER_ARRAY[i].totalXP - window.PLAYER_ARRAY[i].combatXP;
@@ -102,16 +101,64 @@ function showData() {
   sumData();
 }
 
-function searchTable() {
+
+function sumData() {
+  const table = document.getElementById("players");
+
+  if (!document.getElementById("totals")) {
+    table.innerHTML += `
+    <tr id="totals">
+    <th>TOTALS</th>
+    <th></th>
+    <th>Total XP: <br />0</th>
+    <th>Combat XP: <br />0</th>
+    <th>Skilling XP: <br />0</th>
+    </tr>
+    `;
+  }
+
+  let totalXP = 0;
+  let combatXP = 0;
+  let skillingXP = 0;
+  for (var i = 1; i < table.rows.length - 1; i++) {
+    if (!table.rows[i].classList.contains("hide")) {
+      totalXP += parseFloat(table.rows[i].cells[2].innerHTML);
+      combatXP += parseFloat(table.rows[i].cells[3].innerHTML);
+      skillingXP += parseFloat(table.rows[i].cells[4].innerHTML);
+    }
+  }
+  totalXP = totalXP.toLocaleString("en-US");
+  combatXP = combatXP.toLocaleString("en-US");
+  skillingXP = skillingXP.toLocaleString("en-US");
+
+  let tab = `<tr id="totals">
+  <th>TOTALS</th>
+  <th></th>
+  <th>Total XP: <br />${totalXP}</th>
+  <th>Combat XP: <br />${combatXP}</th>
+  <th>Skilling XP: <br />${skillingXP}</th>
+  </tr>`;
+  document.getElementById("totals").innerHTML = tab;
+}
+
+function searchTable(team, column) {
   // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
+  var input, filter, table, tr, td, i;
   input = document.getElementById("searchField");
-  filter = input.value.toUpperCase();
+  if (team) {
+    filter = team.toUpperCase();
+  } else {
+    column = "c1";
+    filter = input.value.toUpperCase();
+  }
   table = document.getElementById("players");
   tr = table.getElementsByTagName("tr");
 
+  removeActiveTeamFilter();
+  addActiveTeamFilter(column);
+
   // Loop through all table rows, and hide those who don't match the search query
-  for (i = 1; i < tr.length; i++) {
+  for (var i = 1; i < tr.length; i++) {
     // Hide the row initially.
     tr[i].classList.add("hide");
     td = tr[i].getElementsByTagName("td");
@@ -128,37 +175,12 @@ function searchTable() {
   sumData();
 }
 
-function sumData() {
-  const table = document.getElementById("players");
-
-  if (!document.getElementById("totals")) {
-    table.innerHTML += `
-    <tr id="totals">
-    <th>TOTALS</th>
-    <th></th>
-    <th>0</th>
-    <th>0</th>
-    <th>0</th>
-    </tr>
-    `;
+function removeActiveTeamFilter() {
+  for (var i = 0; i < document.getElementsByClassName("teamSelect").length; i++) {
+    document.getElementsByClassName("teamSelect")[i].classList.remove("currentTeam");
   }
+}
 
-  let totalXP = 0;
-  let combatXP = 0;
-  let skillingXP = 0;
-  for (var i = 1; i < table.rows.length; i++) {
-    if (!table.rows[i].classList.contains("hide")) {
-      totalXP += parseFloat(table.rows[i].cells[2].innerHTML);
-      combatXP += parseFloat(table.rows[i].cells[3].innerHTML);
-      skillingXP += parseFloat(table.rows[i].cells[4].innerHTML);
-    }
-  }
-  let tab = `<tr id="totals">
-  <th>TOTALS</th>
-  <th></th>
-  <th>${totalXP}</th>
-  <th>${combatXP}</th>
-  <th>${skillingXP}</th>
-  </tr>`;
-  document.getElementById("totals").innerHTML = tab;
+function addActiveTeamFilter(column) {
+  document.getElementsByClassName(column)[0].classList.add("currentTeam");
 }

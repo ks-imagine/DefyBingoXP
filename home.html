@@ -5,15 +5,13 @@
     <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Defy Bingo 2 | EXP Gained</title>
+    <title>Defy Bingo 2 | XP Gained</title>
   </head>
   <body>
     <!-- Here a loader is created which
 			loads till response comes -->
-    <div class="d-flex justify-content-center">
-      <div class="spinner-border" role="status" id="loading">
-        <span class="sr-only">Loading...</span>
-      </div>
+    <div role="status" id="loading">
+      <span>Fetching Data...</span>
     </div>
     <h1>Defy Bingo 2 | XP Gained</h1>
     <h5>Source Code : https://github.com/ks-imagine/bingo-xp-tracker</h5>
@@ -23,6 +21,17 @@
       onkeyup="searchTable()"
       placeholder="Search here.."
     />
+    <div>
+      <table>
+          <tr>
+            <td class="c1 teamSelect currentTeam" onclick="searchTable('', 'c1')">All</td>
+            <td class="c2 teamSelect" onclick="searchTable('Mysterious Old Men', 'c2')">Mysterious Old Men</td>
+            <td class="c3 teamSelect" onclick="searchTable('Freaky Foresters', 'c3')">Freaky Foresters</td>
+            <td class="c4 teamSelect" onclick="searchTable('Sandwich Ladies', 'c4')">Sandwich Ladies</td>
+            <td class="c5 teamSelect" onclick="searchTable('Drunken Dwarves', 'c5')">Drunken Dwarves</td>
+          </tr>
+      </table>
+    </table>
     <br /><br />
     <!-- table for showing data -->
     <table id="players"></table>
