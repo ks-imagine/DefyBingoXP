@@ -1,6 +1,11 @@
 * {
   font-family: Tahoma, Geneva, sans-serif;
 }
+
+h1, h2, h3, h4, h5, span {
+  color: #303030;
+}
+
 table {
   border-collapse: collapse;
   width: 90%;
@@ -16,7 +21,7 @@ table th {
   border: 1px solid #54585d;
 }
 table td {
-  color: #636363;
+  color: #303030;
   border: 1px solid #dddfe1;
 }
 table tr {
