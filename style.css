@@ -36,12 +36,17 @@ tr,
 td {
   text-align: left;
 }
+
 #searchField {
   width: 50%; /* Half-width */
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
+}
+
+#teams {
+  cursor: pointer;
 }
 
 #totals {
