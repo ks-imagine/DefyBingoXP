@@ -92,9 +92,9 @@ function showData() {
     tab += `<tr>
         <td>${p.name}</td>
         <td>${p.teamName}</td>
-        <td>${p.totalXP} </td>
-        <td>${p.combatXP} </td>
-        <td>${p.skillingXP} </td>
+        <td>${p.totalXP.toLocaleString("en-US")} </td>
+        <td>${p.combatXP.toLocaleString("en-US")} </td>
+        <td>${p.skillingXP.toLocaleString("en-US")} </td>
         </tr>`;
   }
   table.innerHTML = tab;
@@ -122,9 +122,9 @@ function sumData() {
   let skillingXP = 0;
   for (var i = 1; i < table.rows.length - 1; i++) {
     if (!table.rows[i].classList.contains("hide")) {
-      totalXP += parseFloat(table.rows[i].cells[2].innerHTML);
-      combatXP += parseFloat(table.rows[i].cells[3].innerHTML);
-      skillingXP += parseFloat(table.rows[i].cells[4].innerHTML);
+      totalXP += parseFloat(table.rows[i].cells[2].innerHTML.replace(/,/g, ''));
+      combatXP += parseFloat(table.rows[i].cells[3].innerHTML.replace(/,/g, ''));
+      skillingXP += parseFloat(table.rows[i].cells[4].innerHTML.replace(/,/g, ''));
     }
   }
   totalXP = totalXP.toLocaleString("en-US");
