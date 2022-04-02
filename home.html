@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Defy Bingo 2 | EXP Gained</title>
+  </head>
+  <body>
+    <!-- Here a loader is created which
+			loads till response comes -->
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border" role="status" id="loading">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <h1>Defy Bingo 2 | XP Gained</h1>
+    <!-- table for showing data -->
+    <input
+      type="text"
+      id="searchField"
+      onkeyup="searchTable()"
+      placeholder="Search here.."
+    />
+    <br /><br />
+    <table id="players"></table>
+  </body>
+</html>
