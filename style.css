@@ -1,7 +1,6 @@
 * {
   font-family: Tahoma, Geneva, sans-serif;
 }
-
 table {
   border-collapse: collapse;
   width: 90%;
@@ -27,7 +26,9 @@ table tr:nth-child(odd) {
   background-color: #ffffff;
 }
 
-th, tr, td {
+th,
+tr,
+td {
   text-align: left;
 }
 #searchField {
@@ -42,13 +43,16 @@ th, tr, td {
   display: contents !important;
 }
 
+.container {
+  overflow-x: auto;
+}
+
 .hide {
   display: none;
 }
 
 .currentTeam {
   background-color: rgb(177, 177, 177);
-
 }
 
 .teamSelect:active {
