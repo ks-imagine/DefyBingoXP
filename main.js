@@ -140,9 +140,8 @@ function sumData() {
     <th>0</th>
     <th>0</th>
     </tr>
-    `
+    `;
   }
-
 
   let totalXP = 0;
   let combatXP = 0;
