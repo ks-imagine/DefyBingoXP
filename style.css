@@ -37,6 +37,11 @@ td {
   text-align: left;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 #searchField {
   width: 50%; /* Half-width */
   font-size: 16px;
@@ -45,7 +50,7 @@ td {
   margin-bottom: 12px;
 }
 
-#teams {
+.clickable {
   cursor: pointer;
 }
 

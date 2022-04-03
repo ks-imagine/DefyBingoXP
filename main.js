@@ -81,11 +81,11 @@ function calcSkillingXP() {
 function showData() {
   const table = document.getElementById("players");
   let tab = `<tr>
-    <th>Player Name</th>
-    <th>Team Name</th>
-    <th>Total XP</th>
-    <th>Combat XP</th>
-    <th>Skilling XP</th>
+    <th class="clickable" onclick="sortTable(0)">Player Name</th>
+    <th class="clickable" onclick="sortTable(1)">Team Name</th>
+    <th class="clickable" onclick="sortTable(2)">Total XP</th>
+    <th class="clickable" onclick="sortTable(3)">Combat XP</th>
+    <th class="clickable" onclick="sortTable(4)">Skilling XP</th>
     </tr>`;
 
   for (let p of window.PLAYER_ARRAY) {
@@ -100,7 +100,6 @@ function showData() {
   table.innerHTML = tab;
   sumData();
 }
-
 
 function sumData() {
   const table = document.getElementById("players");
@@ -122,9 +121,13 @@ function sumData() {
   let skillingXP = 0;
   for (var i = 1; i < table.rows.length - 1; i++) {
     if (!table.rows[i].classList.contains("hide")) {
-      totalXP += parseFloat(table.rows[i].cells[2].innerHTML.replace(/,/g, ''));
-      combatXP += parseFloat(table.rows[i].cells[3].innerHTML.replace(/,/g, ''));
-      skillingXP += parseFloat(table.rows[i].cells[4].innerHTML.replace(/,/g, ''));
+      totalXP += parseFloat(table.rows[i].cells[2].innerHTML.replace(/,/g, ""));
+      combatXP += parseFloat(
+        table.rows[i].cells[3].innerHTML.replace(/,/g, "")
+      );
+      skillingXP += parseFloat(
+        table.rows[i].cells[4].innerHTML.replace(/,/g, "")
+      );
     }
   }
   totalXP = totalXP.toLocaleString("en-US");
@@ -172,15 +175,85 @@ function searchTable(team, column) {
       }
     }
   }
+  sortTable(2, true);
   sumData();
 }
 
 function removeActiveTeamFilter() {
-  for (var i = 0; i < document.getElementsByClassName("teamSelect").length; i++) {
-    document.getElementsByClassName("teamSelect")[i].classList.remove("currentTeam");
+  for (
+    var i = 0;
+    i < document.getElementsByClassName("teamSelect").length;
+    i++
+  ) {
+    document
+      .getElementsByClassName("teamSelect")
+      [i].classList.remove("currentTeam");
   }
 }
 
 function addActiveTeamFilter(column) {
   document.getElementsByClassName(column)[0].classList.add("currentTeam");
+}
+
+function sortTable(column, resetSort) {
+  var table,
+    rows,
+    switching,
+    i,
+    x,
+    y,
+    shouldSwitch,
+    dir,
+    switchcount = 0;
+  table = document.getElementById("players");
+  switching = true;
+  if (resetSort) {
+    dir = "desc";
+  } else {
+    dir = "asc";
+  }
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < rows.length - 2; i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[column];
+      y = rows[i + 1].getElementsByTagName("TD")[column];
+      if (column > 1) {
+        x = parseInt(x.innerHTML.replace(/\,/g, ''), 10);
+        y = parseInt(y.innerHTML.replace(/\,/g, ''), 10);
+      }
+      if (dir == "asc" && column <= 1) {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "asc" && column > 1) {
+        if (x > y) {
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc" && column <= 1) {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc" && column > 1) {
+        if (x < y) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      switchcount++;
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
 }
