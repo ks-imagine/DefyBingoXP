@@ -11,8 +11,13 @@ const combatStyles = [
   "prayer",
 ];
 
-// Calling that async function
+// Call async function (start)
 getapi(overall_url);
+
+// Function to hide the loader
+function hideloader() {
+  document.getElementById("loading").style.display = "none";
+}
 
 // Async function for competition data
 async function getapi(url) {
@@ -70,11 +75,6 @@ function calcSkillingXP() {
       window.PLAYER_ARRAY[i].totalXP - window.PLAYER_ARRAY[i].combatXP;
   }
   showData();
-}
-
-// Function to hide the loader
-function hideloader() {
-  document.getElementById("loading").style.display = "none";
 }
 
 // Function to define innerHTML for HTML table
