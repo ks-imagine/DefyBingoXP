@@ -1,6 +1,6 @@
 // api url
 const overall_url = "https://api.wiseoldman.net/competitions/10087";
-const combat_url = "https://api.wiseoldman.net/competitions/10087?metric=";
+const metric_url = "https://api.wiseoldman.net/competitions/10087?metric=";
 const combatStyles = [
   "attack",
   "strength",
@@ -10,9 +10,64 @@ const combatStyles = [
   "ranged",
   "prayer",
 ];
+const bossList = [
+  "abyssal_sire",
+  "alchemical_hydra",
+  "barrows_chests",
+  "bryophyta",
+  "callisto",
+  "cerberus",
+  "chambers_of_xeric",
+  "chambers_of_xeric_challenge_mode",
+  "chaos_elemental",
+  "chaos_fanatic",
+  "commander_zilyana",
+  "corporeal_beast",
+  "crazy_archaeologist",
+  "dagannoth_prime",
+  "dagannoth_rex",
+  "dagannoth_supreme",
+  "deranged_archaeologist",
+  "general_graardor",
+  "giant_mole",
+  "grotesque_guardians",
+  "hespori",
+  "kalphite_queen",
+  "king_black_dragon",
+  "kraken",
+  "kreearra",
+  "kril_tsutsaroth",
+  "mimic",
+  "nex",
+  "nightmare",
+  "phosanis_nightmare",
+  "obor",
+  "sarachnis",
+  "scorpia",
+  "skotizo",
+  "tempoross",
+  "the_gauntlet",
+  "the_corrupted_gauntlet",
+  "theatre_of_blood",
+  "theatre_of_blood_hard_mode",
+  "thermonuclear_smoke_devil",
+  "tzkal_zuk",
+  "tztok_jad",
+  "venenatis",
+  "vetion",
+  "vorkath",
+  "wintertodt",
+  "zalcano",
+  "zulrah",
+];
+let bossPage = false;
+
+if (window.location.href.includes("boss")) {
+  bossPage = true;
+}
 
 // Call async function (start)
-getapi(overall_url);
+getapi(overall_url, bossPage);
 
 // Function to hide the loader
 function hideloader() {
@@ -20,7 +75,7 @@ function hideloader() {
 }
 
 // Async function for competition data
-async function getapi(url) {
+async function getapi(url, isBossPage) {
   // Storing response
   const response = await fetch(url);
   // Storing data in form of JSON
@@ -41,12 +96,19 @@ function createPlayerArray(data) {
       totalXP: data.participants[i].progress.gained,
       combatXP: 0,
       skillingXP: 0,
+      bossList: {},
     });
   }
   window.PLAYER_ARRAY = playerArray;
 
-  for (var i = 0; i < combatStyles.length; i++) {
-    getCombatData(combat_url + combatStyles[i]);
+  if (bossPage) {
+    for (var i = 0; i < bossList.length; i++) {
+      getBossData(metric_url + bossList[i], bossList[i]);
+    }
+  } else {
+    for (var i = 0; i < combatStyles.length; i++) {
+      getCombatData(metric_url + combatStyles[i]);
+    }
   }
 }
 
@@ -68,17 +130,35 @@ async function getCombatData(url) {
   calcSkillingXP();
 }
 
+// Async function for player combat xp data
+async function getBossData(url, bossName) {
+  // Storing response
+  const response = await fetch(url);
+  var data = await response.json();
+  if (response) {
+    hideloader();
+  }
+  for (var i = 0; i < data.participants.length; i++) {
+    for (var j = 0; j < window.PLAYER_ARRAY.length; j++) {
+      if (data.participants[i].displayName == window.PLAYER_ARRAY[j].name) {
+        window.PLAYER_ARRAY[j].bossList[bossName] = data.participants[i].progress.gained;
+      }
+    }
+  }
+  showBossData();
+}
+
 // Array to calculate skilling XP
 function calcSkillingXP() {
   for (var i = 0; i < window.PLAYER_ARRAY.length; i++) {
     window.PLAYER_ARRAY[i].skillingXP =
       window.PLAYER_ARRAY[i].totalXP - window.PLAYER_ARRAY[i].combatXP;
   }
-  showData();
+  showExperienceData();
 }
 
 // Function to define innerHTML for HTML table
-function showData() {
+function showExperienceData() {
   const table = document.getElementById("players");
   let tab = `<tr>
     <th class="clickable" onclick="sortTable(0)">Player Name</th>
@@ -99,6 +179,120 @@ function showData() {
   }
   table.innerHTML = tab;
   sumData();
+}
+
+// Function to define innerHTML for HTML table
+function showBossData() {
+  const table = document.getElementById("players");
+  let tab = `<tr>
+    <th class="clickable" onclick="sortTable(0)">Player Name</th>
+    <th class="clickable" onclick="sortTable(1)">Team Name</th>
+    <th class="clickable" onclick="sortTable(2)">abyssal_sire</th>
+    <th class="clickable" onclick="sortTable(3)">alchemical_hydra</th>
+    <th class="clickable" onclick="sortTable(4)">barrows_chests</th>
+    <th class="clickable" onclick="sortTable(5)">bryophyta</th>
+    <th class="clickable" onclick="sortTable(6)">callisto</th>
+    <th class="clickable" onclick="sortTable(7)">cerberus</th>
+    <th class="clickable" onclick="sortTable(8)">chambers_of_xeric</th>
+    <th class="clickable" onclick="sortTable(9)">chambers_of_xeric_challenge_mode</th>
+    <th class="clickable" onclick="sortTable(10)">chaos_elemental</th>
+    <th class="clickable" onclick="sortTable(11)">chaos_fanatic</th>
+    <th class="clickable" onclick="sortTable(12)">commander_zilyana</th>
+    <th class="clickable" onclick="sortTable(13)">corporeal_beast</th>
+    <th class="clickable" onclick="sortTable(14)">crazy_archaeologist</th>
+    <th class="clickable" onclick="sortTable(15)">dagannoth_prime</th>
+    <th class="clickable" onclick="sortTable(16)">dagannoth_rex</th>
+    <th class="clickable" onclick="sortTable(17)">dagannoth_supreme</th>
+    <th class="clickable" onclick="sortTable(18)">deranged_archaeologist</th>
+    <th class="clickable" onclick="sortTable(19)">general_graardor</th>
+    <th class="clickable" onclick="sortTable(20)">giant_mole</th>
+    <th class="clickable" onclick="sortTable(21)">grotesque_guardians</th>
+    <th class="clickable" onclick="sortTable(22)">hespori</th>
+    <th class="clickable" onclick="sortTable(23)">kalphite_queen</th>
+    <th class="clickable" onclick="sortTable(24)">king_black_dragon</th>
+    <th class="clickable" onclick="sortTable(25)">kraken</th>
+    <th class="clickable" onclick="sortTable(26)">kreearra</th>
+    <th class="clickable" onclick="sortTable(27)">kril_tsutsaroth</th>
+    <th class="clickable" onclick="sortTable(28)">mimic</th>
+    <th class="clickable" onclick="sortTable(29)">nex</th>
+    <th class="clickable" onclick="sortTable(30)">nightmare</th>
+    <th class="clickable" onclick="sortTable(31)">phosanis_nightmare</th>
+    <th class="clickable" onclick="sortTable(32)">obor</th>
+    <th class="clickable" onclick="sortTable(33)">sarachnis</th>
+    <th class="clickable" onclick="sortTable(34)">scorpia</th>
+    <th class="clickable" onclick="sortTable(35)">skotizo</th>
+    <th class="clickable" onclick="sortTable(36)">tempoross</th>
+    <th class="clickable" onclick="sortTable(37)">the_gauntlet</th>
+    <th class="clickable" onclick="sortTable(38)">the_corrupted_gauntlet</th>
+    <th class="clickable" onclick="sortTable(39)">theatre_of_blood</th>
+    <th class="clickable" onclick="sortTable(40)">theatre_of_blood_hard_mode</th>
+    <th class="clickable" onclick="sortTable(41)">thermonuclear_smoke_devil</th>
+    <th class="clickable" onclick="sortTable(42)">tzkal_zuk</th>
+    <th class="clickable" onclick="sortTable(43)">tztok_jad</th>
+    <th class="clickable" onclick="sortTable(44)">venenatis</th>
+    <th class="clickable" onclick="sortTable(45)">vetion</th>
+    <th class="clickable" onclick="sortTable(46)">vorkath</th>
+    <th class="clickable" onclick="sortTable(47)">wintertodt</th>
+    <th class="clickable" onclick="sortTable(48)">zalcano</th>
+    <th class="clickable" onclick="sortTable(49)">zulrah</th>
+    </tr>`;
+
+  for (let p of window.PLAYER_ARRAY) {
+    tab += `<tr>
+        <td>${p.name}</td>
+        <td>${p.teamName}</td>
+        <td>${p.bossList.abyssal_sire}</td>
+        <td>${p.bossList.alchemical_hydra}</td>
+        <td>${p.bossList.barrows_chests}</td>
+        <td>${p.bossList.bryophyta}</td>
+        <td>${p.bossList.callisto}</td>
+        <td>${p.bossList.cerberus}</td>
+        <td>${p.bossList.chambers_of_xeric}</td>
+        <td>${p.bossList.chambers_of_xeric_challenge_mode}</td>
+        <td>${p.bossList.chaos_elemental}</td>
+        <td>${p.bossList.chaos_fanatic}</td>
+        <td>${p.bossList.commander_zilyana}</td>
+        <td>${p.bossList.corporeal_beast}</td>
+        <td>${p.bossList.crazy_archaeologist}</td>
+        <td>${p.bossList.dagannoth_prime}</td>
+        <td>${p.bossList.dagannoth_rex}</td>
+        <td>${p.bossList.dagannoth_supreme}</td>
+        <td>${p.bossList.deranged_archaeologist}</td>
+        <td>${p.bossList.general_graardor}</td>
+        <td>${p.bossList.giant_mole}</td>
+        <td>${p.bossList.grotesque_guardians}</td>
+        <td>${p.bossList.hespori}</td>
+        <td>${p.bossList.kalphite_queen}</td>
+        <td>${p.bossList.king_black_dragon}</td>
+        <td>${p.bossList.kraken}</td>
+        <td>${p.bossList.kreearra}</td>
+        <td>${p.bossList.kril_tsutsaroth}</td>
+        <td>${p.bossList.mimic}</td>
+        <td>${p.bossList.nex}</td>
+        <td>${p.bossList.nightmare}</td>
+        <td>${p.bossList.phosanis_nightmare}</td>
+        <td>${p.bossList.obor}</td>
+        <td>${p.bossList.sarachnis}</td>
+        <td>${p.bossList.scorpia}</td>
+        <td>${p.bossList.skotizo}</td>
+        <td>${p.bossList.tempoross}</td>
+        <td>${p.bossList.the_gauntlet}</td>
+        <td>${p.bossList.the_corrupted_gauntlet}</td>
+        <td>${p.bossList.theatre_of_blood}</td>
+        <td>${p.bossList.theatre_of_blood_hard_mode}</td>
+        <td>${p.bossList.thermonuclear_smoke_devil}</td>
+        <td>${p.bossList.tzkal_zuk}</td>
+        <td>${p.bossList.tztok_jad}</td>
+        <td>${p.bossList.venenatis}</td>
+        <td>${p.bossList.vetion}</td>
+        <td>${p.bossList.vorkath}</td>
+        <td>${p.bossList.wintertodt}</td>
+        <td>${p.bossList.zalcano}</td>
+        <td>${p.bossList.zulrah}</td>
+        </tr>`;
+  }
+  table.innerHTML = tab;
+  // sumData();
 }
 
 function sumData() {
@@ -220,8 +414,8 @@ function sortTable(column, resetSort) {
       x = rows[i].getElementsByTagName("TD")[column];
       y = rows[i + 1].getElementsByTagName("TD")[column];
       if (column > 1) {
-        x = parseInt(x.innerHTML.replace(/\,/g, ''), 10);
-        y = parseInt(y.innerHTML.replace(/\,/g, ''), 10);
+        x = parseInt(x.innerHTML.replace(/\,/g, ""), 10);
+        y = parseInt(y.innerHTML.replace(/\,/g, ""), 10);
       }
       if (dir == "asc" && column <= 1) {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
