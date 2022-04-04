@@ -393,59 +393,59 @@ function sumKillCount() {
   zulrah=0;
   for (var i = 1; i < table.rows.length - 1; i++) {
     if (!table.rows[i].classList.contains("hide")) {
-      abyssal_sire += parseFloat(table.rows[i].cells[2].innerHTML.replace(/,/g, ""));
-      alchemical_hydra += parseFloat(table.rows[i].cells[3].innerHTML.replace(/,/g, ""));
-      barrows_chests += parseFloat(table.rows[i].cells[4].innerHTML.replace(/,/g, ""));
-      bryophyta += parseFloat(table.rows[i].cells[5].innerHTML.replace(/,/g, ""));
-      callisto += parseFloat(table.rows[i].cells[6].innerHTML.replace(/,/g, ""));
-      cerberus += parseFloat(table.rows[i].cells[7].innerHTML.replace(/,/g, ""));
-      chambers_of_xeric += parseFloat(table.rows[i].cells[8].innerHTML.replace(/,/g, ""));
-      chambers_of_xeric_challenge_mode += parseFloat(table.rows[i].cells[9].innerHTML.replace(/,/g, ""));
-      chaos_elemental += parseFloat(table.rows[i].cells[10].innerHTML.replace(/,/g, ""));
-      chaos_fanatic += parseFloat(table.rows[i].cells[11].innerHTML.replace(/,/g, ""));
-      commander_zilyana += parseFloat(table.rows[i].cells[12].innerHTML.replace(/,/g, ""));
-      corporeal_beast += parseFloat(table.rows[i].cells[13].innerHTML.replace(/,/g, ""));
-      crazy_archaeologist += parseFloat(table.rows[i].cells[14].innerHTML.replace(/,/g, ""));
-      dagannoth_prime += parseFloat(table.rows[i].cells[15].innerHTML.replace(/,/g, ""));
-      dagannoth_rex += parseFloat(table.rows[i].cells[16].innerHTML.replace(/,/g, ""));
-      dagannoth_supreme += parseFloat(table.rows[i].cells[17].innerHTML.replace(/,/g, ""));
-      deranged_archaeologist += parseFloat(table.rows[i].cells[18].innerHTML.replace(/,/g, ""));
-      general_graardor += parseFloat(table.rows[i].cells[19].innerHTML.replace(/,/g, ""));
-      giant_mole += parseFloat(table.rows[i].cells[20].innerHTML.replace(/,/g, ""));
-      grotesque_guardians += parseFloat(table.rows[i].cells[21].innerHTML.replace(/,/g, ""));
-      hespori += parseFloat(table.rows[i].cells[22].innerHTML.replace(/,/g, ""));
-      kalphite_queen += parseFloat(table.rows[i].cells[23].innerHTML.replace(/,/g, ""));
-      king_black_dragon += parseFloat(table.rows[i].cells[24].innerHTML.replace(/,/g, ""));
-      kraken += parseFloat(table.rows[i].cells[25].innerHTML.replace(/,/g, ""));
-      kreearra += parseFloat(table.rows[i].cells[26].innerHTML.replace(/,/g, ""));
-      kril_tsutsaroth += parseFloat(table.rows[i].cells[27].innerHTML.replace(/,/g, ""));
-      mimic += parseFloat(table.rows[i].cells[28].innerHTML.replace(/,/g, ""));
-      nex += parseFloat(table.rows[i].cells[29].innerHTML.replace(/,/g, ""));
-      nightmare += parseFloat(table.rows[i].cells[30].innerHTML.replace(/,/g, ""));
-      phosanis_nightmare += parseFloat(table.rows[i].cells[31].innerHTML.replace(/,/g, ""));
-      obor += parseFloat(table.rows[i].cells[32].innerHTML.replace(/,/g, ""));
-      sarachnis += parseFloat(table.rows[i].cells[33].innerHTML.replace(/,/g, ""));
-      scorpia += parseFloat(table.rows[i].cells[34].innerHTML.replace(/,/g, ""));
-      skotizo += parseFloat(table.rows[i].cells[35].innerHTML.replace(/,/g, ""));
-      tempoross += parseFloat(table.rows[i].cells[36].innerHTML.replace(/,/g, ""));
-      the_gauntlet += parseFloat(table.rows[i].cells[37].innerHTML.replace(/,/g, ""));
-      the_corrupted_gauntlet += parseFloat(table.rows[i].cells[38].innerHTML.replace(/,/g, ""));
-      theatre_of_blood += parseFloat(table.rows[i].cells[39].innerHTML.replace(/,/g, ""));
-      theatre_of_blood_hard_mode += parseFloat(table.rows[i].cells[40].innerHTML.replace(/,/g, ""));
-      thermonuclear_smoke_devil += parseFloat(table.rows[i].cells[41].innerHTML.replace(/,/g, ""));
-      tzkal_zuk += parseFloat(table.rows[i].cells[42].innerHTML.replace(/,/g, ""));
-      tztok_jad += parseFloat(table.rows[i].cells[43].innerHTML.replace(/,/g, ""));
-      venenatis += parseFloat(table.rows[i].cells[44].innerHTML.replace(/,/g, ""));
-      vetion += parseFloat(table.rows[i].cells[45].innerHTML.replace(/,/g, ""));
-      vorkath += parseFloat(table.rows[i].cells[46].innerHTML.replace(/,/g, ""));
-      wintertodt += parseFloat(table.rows[i].cells[47].innerHTML.replace(/,/g, ""));
-      zalcano += parseFloat(table.rows[i].cells[48].innerHTML.replace(/,/g, ""));
-      zulrah += parseFloat(table.rows[i].cells[49].innerHTML.replace(/,/g, ""));
+      abyssal_sire += parseFloat(table.rows[i].cells[2].innerHTML);
+      alchemical_hydra += parseFloat(table.rows[i].cells[3].innerHTML);
+      barrows_chests += parseFloat(table.rows[i].cells[4].innerHTML);
+      bryophyta += parseFloat(table.rows[i].cells[5].innerHTML);
+      callisto += parseFloat(table.rows[i].cells[6].innerHTML);
+      cerberus += parseFloat(table.rows[i].cells[7].innerHTML);
+      chambers_of_xeric += parseFloat(table.rows[i].cells[8].innerHTML);
+      chambers_of_xeric_challenge_mode += parseFloat(table.rows[i].cells[9].innerHTML);
+      chaos_elemental += parseFloat(table.rows[i].cells[10].innerHTML);
+      chaos_fanatic += parseFloat(table.rows[i].cells[11].innerHTML);
+      commander_zilyana += parseFloat(table.rows[i].cells[12].innerHTML);
+      corporeal_beast += parseFloat(table.rows[i].cells[13].innerHTML);
+      crazy_archaeologist += parseFloat(table.rows[i].cells[14].innerHTML);
+      dagannoth_prime += parseFloat(table.rows[i].cells[15].innerHTML);
+      dagannoth_rex += parseFloat(table.rows[i].cells[16].innerHTML);
+      dagannoth_supreme += parseFloat(table.rows[i].cells[17].innerHTML);
+      deranged_archaeologist += parseFloat(table.rows[i].cells[18].innerHTML);
+      general_graardor += parseFloat(table.rows[i].cells[19].innerHTML);
+      giant_mole += parseFloat(table.rows[i].cells[20].innerHTML);
+      grotesque_guardians += parseFloat(table.rows[i].cells[21].innerHTML);
+      hespori += parseFloat(table.rows[i].cells[22].innerHTML);
+      kalphite_queen += parseFloat(table.rows[i].cells[23].innerHTML);
+      king_black_dragon += parseFloat(table.rows[i].cells[24].innerHTML);
+      kraken += parseFloat(table.rows[i].cells[25].innerHTML);
+      kreearra += parseFloat(table.rows[i].cells[26].innerHTML);
+      kril_tsutsaroth += parseFloat(table.rows[i].cells[27].innerHTML);
+      mimic += parseFloat(table.rows[i].cells[28].innerHTML);
+      nex += parseFloat(table.rows[i].cells[29].innerHTML);
+      nightmare += parseFloat(table.rows[i].cells[30].innerHTML);
+      phosanis_nightmare += parseFloat(table.rows[i].cells[31].innerHTML);
+      obor += parseFloat(table.rows[i].cells[32].innerHTML);
+      sarachnis += parseFloat(table.rows[i].cells[33].innerHTML);
+      scorpia += parseFloat(table.rows[i].cells[34].innerHTML);
+      skotizo += parseFloat(table.rows[i].cells[35].innerHTML);
+      tempoross += parseFloat(table.rows[i].cells[36].innerHTML);
+      the_gauntlet += parseFloat(table.rows[i].cells[37].innerHTML);
+      the_corrupted_gauntlet += parseFloat(table.rows[i].cells[38].innerHTML);
+      theatre_of_blood += parseFloat(table.rows[i].cells[39].innerHTML);
+      theatre_of_blood_hard_mode += parseFloat(table.rows[i].cells[40].innerHTML);
+      thermonuclear_smoke_devil += parseFloat(table.rows[i].cells[41].innerHTML);
+      tzkal_zuk += parseFloat(table.rows[i].cells[42].innerHTML);
+      tztok_jad += parseFloat(table.rows[i].cells[43].innerHTML);
+      venenatis += parseFloat(table.rows[i].cells[44].innerHTML);
+      vetion += parseFloat(table.rows[i].cells[45].innerHTML);
+      vorkath += parseFloat(table.rows[i].cells[46].innerHTML);
+      wintertodt += parseFloat(table.rows[i].cells[47].innerHTML);
+      zalcano += parseFloat(table.rows[i].cells[48].innerHTML);
+      zulrah += parseFloat(table.rows[i].cells[49].innerHTML);
     }
   }
   let tab = `<tr id="totals">
     <th>TOTALS</th>
-    <th></th>
+    <th id="bossTotal">All Bosses:<br />0</th>
     <th>Abyssal Sire:<br />${abyssal_sire}</th>
     <th>Alchemical Hydra:<br />${alchemical_hydra}</th>
     <th>Barrows:<br />${barrows_chests}</th>
@@ -496,6 +496,16 @@ function sumKillCount() {
     <th>Zulrah:<br />${zulrah}</th>
   </tr>`;
   document.getElementById("totals").innerHTML = tab;
+  sumTotalBoss();
+}
+
+function sumTotalBoss() {
+  const totalsRow = document.getElementById("totals");
+  let boss_total = 0;
+  for (i = 2; i < totalsRow.cells.length; i++) {
+    boss_total += parseInt(totalsRow.cells[i].innerHTML.replace(/\D/g, ''));
+  }
+  document.getElementById("bossTotal").innerHTML = `All Boss Total:<br>${boss_total}`;
 }
 
 function searchTable(team, column) {
