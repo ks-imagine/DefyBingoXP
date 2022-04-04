@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, span {
   color: #303030;
 }
 
+h5 {
+  font-size: 10px;
+}
+
 table {
   border-collapse: collapse;
   width: 90%;
