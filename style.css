@@ -6,6 +6,11 @@ h1, h2, h3, h4, h5, span {
   color: #303030;
 }
 
+h4 {
+  color: red;
+  font-size: 12px;
+}
+
 h5 {
   font-size: 10px;
 }
