@@ -1,3 +1,4 @@
+/*
 // api url
 const overall_url = "https://api.wiseoldman.net/competitions/10087";
 const metric_url = "https://api.wiseoldman.net/competitions/10087?metric=";
@@ -629,3 +630,4 @@ function sortTable(column, resetSort) {
     }
   }
 }
+*/
