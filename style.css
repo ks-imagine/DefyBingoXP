@@ -84,3 +84,8 @@ a {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+#comingSoon {
+  font-size: 18px;
+  padding-bottom: 12px;
+}
