@@ -5,16 +5,13 @@
     <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Defy Bingo 3 | XP Gained</title>
+    <title>Defy Total XP Competition  | XP Gained</title>
   </head>
   <body>
-    <h1><a href="./home.html">Defy Bingo 3</a></h1>
+    <h1><a href="./home.html">Defy Total XP Competition </a></h1>
     <h2><a href="./home.html" style="text-decoration: underline !important;">XP Gained</a> | <a href="./boss.html">Boss KC</a></h2>
     <h5>Source Code : https://github.com/ks-imagine/bingo-xp-tracker</h5>
     <!-- Hidden Message | Shows when API data still fetching -->
-    <div id="comingSoon">
-      Defy Bingo 3... Coming soon...
-    </div>
     <div role="status" id="loading">
       <span>Fetching Data...
         <br />Wise Old Man API limits requests to 500 every 5 minutes...
@@ -26,10 +23,9 @@
       id="searchField"
       onkeyup="searchTable()"
       placeholder="Search here.."
-      class="hide"
     />
     <div class="container">
-      <table id="teams" class="clickable hide">
+      <table id="teams" class="clickable">
           <tr>
             <td class="c1 teamSelect currentTeam" onclick="searchTable('', 'c1')">All</td>
             <td class="c2 teamSelect" onclick="searchTable('Mysterious Old Men', 'c2')">Mysterious Old Men</td>
@@ -41,7 +37,7 @@
     </table>
     <br />
     <!-- table for showing data -->
-    <table id="players" class="hide"></table>
+    <table id="players"></table>
     <br />
   </body>
 </html>

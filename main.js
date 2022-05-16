@@ -1,7 +1,6 @@
-
 // api url
-const overall_url = "https://api.wiseoldman.net/competitions/10087";
-const metric_url = "https://api.wiseoldman.net/competitions/10087?metric=";
+const overall_url = "https://api.wiseoldman.net/competitions/11584";
+const metric_url = "https://api.wiseoldman.net/competitions/11584?metric=";
 const combatStyles = [
   "attack",
   "strength",
