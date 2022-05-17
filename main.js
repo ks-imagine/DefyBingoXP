@@ -201,7 +201,7 @@ updatePlayers = async () => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({"verificationCode": "033-031-170"}),
+    body: JSON.stringify({ verificationCode: "033-031-170" }),
   };
   try {
     const fetchResponse = await fetch(
@@ -232,7 +232,7 @@ updatePlayers = async () => {
 */
 
 // Function to define innerHTML for HTML table
-showExperienceData = () => {
+showExperienceData2 = () => {
   const table = document.getElementById("players");
   let tab = `<tr>
     <th class="clickable" onclick="sortTable(0)">Player Name</th>
@@ -253,32 +253,112 @@ showExperienceData = () => {
   sumXP();
 };
 
-subTable = (category) => {
+showExperienceData = (category) => {
   const table = document.getElementById("players");
-  let tab = `<tr>
-    <th class="clickable" onclick="sortTable(0)">Player Name</th>
-    <th class="clickable" onclick="sortTable(1)">${category} XP</th>
-    <th class="clickable" onclick="sortTable(2)">Combat Slow</th>
-    <th class="clickable" onclick="sortTable(3)">Skilling Buyable</th>
-    <th class="clickable" onclick="sortTable(4)">Skilling Fast</th>
-    <th class="clickable" onclick="sortTable(5)">Skilling Slow</th>
-    </tr>`;
-
+  let tab =
+    "<tr><th class='clickable' onclick='sortTable(0)'>Player Name</th>";
+    if (category == "overall" || !category) {
+      tab += "<th class='clickable' onclick='sortTable(1)'>Total XP</th>"
+      tab += "<th class='clickable' onclick='sortTable(2)'>Combat XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(3)'>Skilling XP</th>";
+    } else if (category == "combat_fast") {
+      tab += "<th class='clickable' onclick='sortTable(1)'>Combat - Big XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(2)'>Magic XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(3)'>Ranged XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(4)'>Prayer XP</th>";
+    } else if (category == "combat_slow") {
+      tab += "<th class='clickable' onclick='sortTable(1)'>Combat - Melee</th>";
+      tab += "<th class='clickable' onclick='sortTable(2)'>Attack XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(3)'>Strength XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(4)'>Defense XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(5)'>Hitpoints XP</th>";
+    } else if (category == "skilling_buyable") {
+      tab += "<th class='clickable' onclick='sortTable(1)'>Skilling - Big XP Buyables</th>";
+      tab += "<th class='clickable' onclick='sortTable(2)'>Construction XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(3)'>Farming XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(4)'>Fletching XP</th>";
+    } else if (category == "skilling_fast") {
+      tab += "<th class='clickable' onclick='sortTable(1)'>Skilling - Fast Gains</th>";
+      tab += "<th class='clickable' onclick='sortTable(2)'>Cooking XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(3)'>Herblore XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(4)'>Crafting XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(5)'>Smithing XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(6)'>Firemaking XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(7)'>Thieving XP</th>";
+    } else if (category == "skilling_slow") {
+      tab += "<th class='clickable' onclick='sortTable(1)'>Skilling - Slow Gains</th>";
+      tab += "<th class='clickable' onclick='sortTable(2)'>Agility XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(3)'>Mining XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(4)'>Fishing XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(5)'>Hunter XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(6)'>Slayer XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(7)'>Runecrafting XP</th>";
+      tab += "<th class='clickable' onclick='sortTable(8)'>Woodcutting XP</th>";
+    }
+  tab += "</tr>"
   for (let p of window.PLAYER_ARRAY) {
-    tab += `<tr>
-        <td>${p.name}</td>
-        <td>${p.combat_fast.toLocaleString("en-US")} </td>
-        <td>${p.combat_slow.toLocaleString("en-US")} </td>
-        <td>${p.skilling_buyable.toLocaleString("en-US")} </td>
-        <td>${p.skilling_fast.toLocaleString("en-US")} </td>
-        <td>${p.skilling_slow.toLocaleString("en-US")} </td>
-        </tr>`;
+    if (category == "overall" || !category) {
+      tab += `<tr>
+      <td>${p.name}</td>
+      <td>${p.totalXP.toLocaleString("en-US")} </td>
+      <td>${p.combatXP.toLocaleString("en-US")} </td>
+      <td>${p.skillingXP.toLocaleString("en-US")} </td>
+      </tr>`;
+    } else if (category == "combat_fast") {
+      tab += `<tr>
+      <td>${p.name}</td>
+      <td>${p.combat_fast.toLocaleString("en-US")} </td>
+      <td>${p.skills.magic.toLocaleString("en-US")} </td>
+      <td>${p.skills.ranged.toLocaleString("en-US")} </td>
+      <td>${p.skills.prayer.toLocaleString("en-US")} </td>
+      </tr>`;
+    } else if (category == "combat_slow") {
+      tab += `<tr>
+      <td>${p.name}</td>
+      <td>${p.combat_slow.toLocaleString("en-US")} </td>
+      <td>${p.skills.attack.toLocaleString("en-US")} </td>
+      <td>${p.skills.strength.toLocaleString("en-US")} </td>
+      <td>${p.skills.defence.toLocaleString("en-US")} </td>
+      <td>${p.skills.hitpoints.toLocaleString("en-US")} </td>
+      </tr>`;
+    } else if (category == "skilling_buyable") {
+      tab += `<tr>
+      <td>${p.name}</td>
+      <td>${p.skilling_buyable.toLocaleString("en-US")} </td>
+      <td>${p.skills.construction.toLocaleString("en-US")} </td>
+      <td>${p.skills.farming.toLocaleString("en-US")} </td>
+      <td>${p.skills.fletching.toLocaleString("en-US")} </td>
+      </tr>`;
+    } else if (category == "skilling_fast") {
+      tab += `<tr>
+      <td>${p.name}</td>
+      <td>${p.skilling_fast.toLocaleString("en-US")} </td>
+      <td>${p.skills.cooking.toLocaleString("en-US")} </td>
+      <td>${p.skills.herblore.toLocaleString("en-US")} </td>
+      <td>${p.skills.crafting.toLocaleString("en-US")} </td>
+      <td>${p.skills.smithing.toLocaleString("en-US")} </td>
+      <td>${p.skills.firemaking.toLocaleString("en-US")} </td>
+      <td>${p.skills.thieving.toLocaleString("en-US")} </td>
+      </tr>`;
+    } else if (category == "skilling_slow") {
+      tab += `<tr>
+      <td>${p.name}</td>
+      <td>${p.skilling_slow.toLocaleString("en-US")} </td>
+      <td>${p.skills.agility.toLocaleString("en-US")} </td>
+      <td>${p.skills.mining.toLocaleString("en-US")} </td>
+      <td>${p.skills.fishing.toLocaleString("en-US")} </td>
+      <td>${p.skills.hunter.toLocaleString("en-US")} </td>
+      <td>${p.skills.slayer.toLocaleString("en-US")} </td>
+      <td>${p.skills.runecrafting.toLocaleString("en-US")} </td>
+      <td>${p.skills.woodcutting.toLocaleString("en-US")} </td>
+      </tr>`;
+    }
   }
   table.innerHTML = tab;
-  sumXP();
-}
+  sumXP(category);
+};
 
-sumXP = () => {
+sumXP = (category) => {
   const table = document.getElementById("players");
 
   if (!document.getElementById("totals")) {
@@ -318,8 +398,6 @@ sumXP = () => {
   </tr>`;
   document.getElementById("totals").innerHTML = tab;
 };
-
-
 
 searchTable = (team, column) => {
   // Declare variables
