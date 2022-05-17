@@ -5,12 +5,11 @@
     <link rel="stylesheet" href="style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Defy Total XP Competition  | XP Gained</title>
+    <title>Defy Total XP Competition</title>
   </head>
   <body>
     <h1><a href="./home.html">Defy Total XP Competition </a></h1>
-    <h2><a href="./home.html" style="text-decoration: underline !important;">XP Gained</a> | <a href="./boss.html">Boss KC</a></h2>
-    <h5>Source Code : https://github.com/ks-imagine/bingo-xp-tracker</h5>
+    <h5>Source Code : https://github.com/ks-imagine/defy-osrs-contests/tree/defy-total-xp-comp-2022</h5>
     <!-- Hidden Message | Shows when API data still fetching -->
     <div role="status" id="loading">
       <span>Fetching Data...
@@ -27,11 +26,12 @@
     <div class="container">
       <table id="teams" class="clickable">
           <tr>
-            <td class="c1 teamSelect currentTeam" onclick="searchTable('', 'c1')">All</td>
-            <td class="c2 teamSelect" onclick="searchTable('Mysterious Old Men', 'c2')">Mysterious Old Men</td>
-            <td class="c3 teamSelect" onclick="searchTable('Freaky Foresters', 'c3')">Freaky Foresters</td>
-            <td class="c4 teamSelect" onclick="searchTable('Sandwich Ladies', 'c4')">Sandwich Ladies</td>
-            <td class="c5 teamSelect" onclick="searchTable('Drunken Dwarves', 'c5')">Drunken Dwarves</td>
+            <td class="c1 teamSelect currentTeam" onclick="showExperienceData()">Overall</td>
+            <td class="c2 teamSelect" onclick="subTable('combat_fast')">Combat - Big XP</td>
+            <td class="c3 teamSelect" onclick="subTable('combat_slow')">Combat - Melee</td>
+            <td class="c4 teamSelect" onclick="subTable('skilling_buyable')">Skilling - Big XP Buyables</td>
+            <td class="c5 teamSelect" onclick="subTable('skilling_fast')">Skilling - Fast Gains</td>
+            <td class="c5 teamSelect" onclick="subTable('skilling_slow')">Skilling - Slow Gains</td>
           </tr>
       </table>
     </table>

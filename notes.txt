@@ -1,0 +1,26 @@
+// Notes
+ - Finish Sort Bar functionality
+    - When click, highlight current selection
+    - When click, create columns of skills within category
+ - Fix table sort (header click)
+ - Finish Search Bar
+    - Remove ability to search XP values, only search first column
+ - Update table to display if max xp reached or pet received
+ - Create pets column?
+    - Number of pets received w/ icons?
+ - Add button to event image
+    - Embedded popup that shows event image
+ - Add skill icons?
+ - Add Defy logo to page
+ - Create single player pages
+    - Use URL parameter to determine which player
+    - Table Layout
+        - Each category is color coded to match screenshot
+        - Header (Category, Skill Name, XP Gained, XP Start, XP End)
+            - If max xp, change text style
+            - If pet received, add pet icon
+            - Category either hidden or shown once
+        - Footer (Total XP, $total_xp, '', '')
+    - Clickable sort bar similar to main page for each category filtering
+
+ - Heroku CLI deployment
