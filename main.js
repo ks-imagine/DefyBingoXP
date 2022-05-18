@@ -17,8 +17,8 @@
 const competition_id = 10087; // testing
 // const competition_id = 11584; // live
 
-const competition_url = `https://api.wiseoldman.net/competitions/${competition_id}`;
-const metric_url = `https://api.wiseoldman.net/competitions/${competition_id}?metric=`;
+// const competition_url = `https://api.wiseoldman.net/competitions/${competition_id}`;
+// const metric_url = `https://api.wiseoldman.net/competitions/${competition_id}?metric=`;
 const all_skills = {
   magic: "combat_fast",
   ranged: "combat_fast",
@@ -343,9 +343,9 @@ showExperienceData = (category, column) => {
   } else {
     removeActiveCategoryFilter();
     addActiveCategoryFilter(column);
-    sortTable(2, true);
   }
   document.getElementById("searchField").value = "";
+  sortTable(1, true);
 };
 
 sumXP = () => {
