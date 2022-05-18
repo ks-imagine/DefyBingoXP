@@ -33,14 +33,9 @@ h5 {
   font-size: 10px;
 }
 
-input {
-  opacity: 97%;
-}
-
 table {
   border-collapse: collapse;
   width: 100%;
-  opacity: 97%;
 }
 
 table td {
