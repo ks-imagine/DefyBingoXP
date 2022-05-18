@@ -345,7 +345,7 @@ showExperienceData = (category, column) => {
     addActiveCategoryFilter(column);
   }
   document.getElementById("searchField").value = "";
-  sortTable(1, true);
+  sortTable(1);
   colorCells(category);
 };
 
@@ -442,7 +442,7 @@ searchTable = (category, column) => {
       }
     }
   }
-  sortTable(2, true);
+  sortTable(2);
   if (category == "overall") {
     sumXP();
   }
@@ -468,7 +468,7 @@ addActiveCategoryFilter = (column) => {
   }
 };
 
-sortTable = (column, resetSort) => {
+sortTable = (column) => {
   var table,
     rows,
     switching,
@@ -481,11 +481,7 @@ sortTable = (column, resetSort) => {
     switchcount = 0;
   table = document.getElementById("players");
   switching = true;
-  if (resetSort) {
-    dir = "desc";
-  } else {
-    dir = "asc";
-  }
+  dir = "desc";
   while (switching) {
     switching = false;
     rows = table.rows;
@@ -502,23 +498,23 @@ sortTable = (column, resetSort) => {
         x = parseInt(x.innerHTML.replace(/\,/g, ""), 10);
         y = parseInt(y.innerHTML.replace(/\,/g, ""), 10);
       }
-      if (dir == "asc" && column == 0) {
+      if (dir == "desc" && column == 0) {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      } else if (dir == "asc" && column > 0) {
-        if (x > y) {
-          shouldSwitch = true;
-          break;
-        }
-      } else if (dir == "desc" && column == 0) {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
           shouldSwitch = true;
           break;
         }
       } else if (dir == "desc" && column > 0) {
         if (x < y) {
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "asc" && column == 0) {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "asc" && column > 0) {
+        if (x > y) {
           shouldSwitch = true;
           break;
         }
@@ -529,8 +525,8 @@ sortTable = (column, resetSort) => {
       switching = true;
       switchcount++;
     } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
+      if (switchcount == 0 && dir == "desc") {
+        dir = "asc";
         switching = true;
       }
     }
