@@ -2,6 +2,11 @@
   font-family: Tahoma, Geneva, sans-serif;
 }
 
+body {
+  text-align: center;
+  background-color: whitesmoke;
+}
+
 h1,
 h2,
 h3,
@@ -9,6 +14,7 @@ h4,
 h5,
 span {
   color: #303030;
+  margin: 10px;
 }
 
 h4 {
@@ -22,7 +28,7 @@ h5 {
 
 table {
   border-collapse: collapse;
-  width: 90%;
+  width: 100%;
 }
 table td {
   padding: 15px;
@@ -61,6 +67,13 @@ a {
   color: inherit;
 }
 
+#defy-logo {
+  width: 9%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
 #searchField {
   width: 50%; /* Half-width */
   font-size: 16px;
@@ -88,6 +101,8 @@ a {
 
 .container {
   overflow-x: auto;
+  margin: auto;
+  width: 80%;
 }
 
 .hide {
