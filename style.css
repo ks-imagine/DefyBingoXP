@@ -4,6 +4,7 @@
 
 body {
   text-align: center;
+  margin-top: 10px;
   background-color: aliceblue;
   background-image: url('./images/clan-defy-logo.png');
   background-repeat: no-repeat;
@@ -77,10 +78,9 @@ a {
 }
 
 #defy-logo {
-  width: 9%;
+  width: 25px;
   height: auto;
-  margin: 0 auto;
-  display: block;
+  margin: -2px auto;
 }
 
 #searchField {

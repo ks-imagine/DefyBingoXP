@@ -1,11 +1,7 @@
 // Notes
- - Update table to display if max xp reached or pet received
- - Create pets column?
-    - Number of pets received w/ icons?
+ - Update table to display if pet received
  - Add button to event image
     - Embedded popup that shows event image
- - Add skill icons?
- - Add Defy logo to page
  - Create single player pages
     - Use URL parameter to determine which player
     - Table Layout
