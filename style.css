@@ -4,7 +4,11 @@
 
 body {
   text-align: center;
-  background-color: whitesmoke;
+  background-color: aliceblue;
+  background-image: url('./images/clan-defy-logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 h1,
@@ -26,9 +30,14 @@ h5 {
   font-size: 10px;
 }
 
+input {
+  opacity: 97%;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
+  opacity: 97%;
 }
 table td {
   padding: 15px;
