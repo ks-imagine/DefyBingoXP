@@ -24,14 +24,14 @@
       placeholder="Search here.."
     />
     <div class="container">
-      <table id="teams" class="clickable">
+      <table id="categorys" class="clickable">
           <tr>
-            <td class="c1 teamSelect currentTeam" onclick="showExperienceData()">Overall</td>
-            <td class="c2 teamSelect" onclick="showExperienceData('combat_fast')">Combat - Big XP</td>
-            <td class="c3 teamSelect" onclick="showExperienceData('combat_slow')">Combat - Melee</td>
-            <td class="c4 teamSelect" onclick="showExperienceData('skilling_buyable')">Skilling - Big XP Buyables</td>
-            <td class="c5 teamSelect" onclick="showExperienceData('skilling_fast')">Skilling - Fast Gains</td>
-            <td class="c5 teamSelect" onclick="showExperienceData('skilling_slow')">Skilling - Slow Gains</td>
+            <td class="c1 categorySelect currentCategory" onclick="showExperienceData('overall', 'c1')">Overall</td>
+            <td class="c2 categorySelect" onclick="showExperienceData('combat_fast', 'c2')">Combat - Big XP</td>
+            <td class="c3 categorySelect" onclick="showExperienceData('combat_slow', 'c3')">Combat - Melee</td>
+            <td class="c4 categorySelect" onclick="showExperienceData('skilling_buyable', 'c4')">Skilling - Big XP Buyables</td>
+            <td class="c5 categorySelect" onclick="showExperienceData('skilling_fast', 'c5')">Skilling - Fast Gains</td>
+            <td class="c6 categorySelect" onclick="showExperienceData('skilling_slow', 'c6')">Skilling - Slow Gains</td>
           </tr>
       </table>
     </table>

@@ -17,8 +17,8 @@
 const competition_id = 10087; // testing
 // const competition_id = 11584; // live
 
-const competition_url = `https://api.wiseoldman.net/competitions/${competition_id}`;
-const metric_url = `https://api.wiseoldman.net/competitions/${competition_id}?metric=`;
+// const competition_url = `https://api.wiseoldman.net/competitions/${competition_id}`;
+// const metric_url = `https://api.wiseoldman.net/competitions/${competition_id}?metric=`;
 const all_skills = {
   magic: "combat_fast",
   ranged: "combat_fast",
@@ -232,70 +232,51 @@ updatePlayers = async () => {
 */
 
 // Function to define innerHTML for HTML table
-showExperienceData2 = () => {
+showExperienceData = (category, column) => {
   const table = document.getElementById("players");
-  let tab = `<tr>
-    <th class="clickable" onclick="sortTable(0)">Player Name</th>
-    <th class="clickable" onclick="sortTable(1)">Total XP</th>
-    <th class="clickable" onclick="sortTable(2)">Combat XP</th>
-    <th class="clickable" onclick="sortTable(3)">Skilling XP</th>
-    </tr>`;
-
-  for (let p of window.PLAYER_ARRAY) {
-    tab += `<tr>
-        <td>${p.name}</td>
-        <td>${p.totalXP.toLocaleString("en-US")} </td>
-        <td>${p.combatXP.toLocaleString("en-US")} </td>
-        <td>${p.skillingXP.toLocaleString("en-US")} </td>
-        </tr>`;
+  let tab = "<tr><th class='clickable' onclick='sortTable(0)'>Player Name</th>";
+  if (category == "overall" || !category) {
+    tab += "<th class='clickable' onclick='sortTable(1)'>Total XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Combat XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Skilling XP</th>";
+  } else if (category == "combat_fast") {
+    tab += "<th class='clickable' onclick='sortTable(1)'>Combat - Big XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Magic XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Ranged XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Prayer XP</th>";
+  } else if (category == "combat_slow") {
+    tab += "<th class='clickable' onclick='sortTable(1)'>Combat - Melee</th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Attack XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Strength XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Defense XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(5)'>Hitpoints XP</th>";
+  } else if (category == "skilling_buyable") {
+    tab +=
+      "<th class='clickable' onclick='sortTable(1)'>Skilling - Big XP Buyables</th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Construction XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Farming XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Fletching XP</th>";
+  } else if (category == "skilling_fast") {
+    tab +=
+      "<th class='clickable' onclick='sortTable(1)'>Skilling - Fast Gains</th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Cooking XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Herblore XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Crafting XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(5)'>Smithing XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(6)'>Firemaking XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(7)'>Thieving XP</th>";
+  } else if (category == "skilling_slow") {
+    tab +=
+      "<th class='clickable' onclick='sortTable(1)'>Skilling - Slow Gains</th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Agility XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Mining XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Fishing XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(5)'>Hunter XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(6)'>Slayer XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(7)'>Runecrafting XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(8)'>Woodcutting XP</th>";
   }
-  table.innerHTML = tab;
-  sumXP();
-};
-
-showExperienceData = (category) => {
-  const table = document.getElementById("players");
-  let tab =
-    "<tr><th class='clickable' onclick='sortTable(0)'>Player Name</th>";
-    if (category == "overall" || !category) {
-      tab += "<th class='clickable' onclick='sortTable(1)'>Total XP</th>"
-      tab += "<th class='clickable' onclick='sortTable(2)'>Combat XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(3)'>Skilling XP</th>";
-    } else if (category == "combat_fast") {
-      tab += "<th class='clickable' onclick='sortTable(1)'>Combat - Big XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(2)'>Magic XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(3)'>Ranged XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(4)'>Prayer XP</th>";
-    } else if (category == "combat_slow") {
-      tab += "<th class='clickable' onclick='sortTable(1)'>Combat - Melee</th>";
-      tab += "<th class='clickable' onclick='sortTable(2)'>Attack XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(3)'>Strength XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(4)'>Defense XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(5)'>Hitpoints XP</th>";
-    } else if (category == "skilling_buyable") {
-      tab += "<th class='clickable' onclick='sortTable(1)'>Skilling - Big XP Buyables</th>";
-      tab += "<th class='clickable' onclick='sortTable(2)'>Construction XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(3)'>Farming XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(4)'>Fletching XP</th>";
-    } else if (category == "skilling_fast") {
-      tab += "<th class='clickable' onclick='sortTable(1)'>Skilling - Fast Gains</th>";
-      tab += "<th class='clickable' onclick='sortTable(2)'>Cooking XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(3)'>Herblore XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(4)'>Crafting XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(5)'>Smithing XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(6)'>Firemaking XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(7)'>Thieving XP</th>";
-    } else if (category == "skilling_slow") {
-      tab += "<th class='clickable' onclick='sortTable(1)'>Skilling - Slow Gains</th>";
-      tab += "<th class='clickable' onclick='sortTable(2)'>Agility XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(3)'>Mining XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(4)'>Fishing XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(5)'>Hunter XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(6)'>Slayer XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(7)'>Runecrafting XP</th>";
-      tab += "<th class='clickable' onclick='sortTable(8)'>Woodcutting XP</th>";
-    }
-  tab += "</tr>"
+  tab += "</tr>";
   for (let p of window.PLAYER_ARRAY) {
     if (category == "overall" || !category) {
       tab += `<tr>
@@ -355,10 +336,19 @@ showExperienceData = (category) => {
     }
   }
   table.innerHTML = tab;
-  sumXP(category);
+  if (category == "overall" || !category) {
+    sumXP();
+    removeActiveCategoryFilter();
+    addActiveCategoryFilter("c1");
+  } else {
+    removeActiveCategoryFilter();
+    addActiveCategoryFilter(column);
+    sortTable(2, true);
+  }
+  document.getElementById("searchField").value = "";
 };
 
-sumXP = (category) => {
+sumXP = () => {
   const table = document.getElementById("players");
 
   if (!document.getElementById("totals")) {
@@ -399,21 +389,39 @@ sumXP = (category) => {
   document.getElementById("totals").innerHTML = tab;
 };
 
-searchTable = (team, column) => {
+/*
+ __________________________________
+< Functions - Search, Filter, Sort >
+ ----------------------------------
+   \
+    \
+     \
+                '-.
+      .---._     \ \.--'
+    /       `-..__)  ,-'
+   |    0           /
+    \--.__,   .__.,`
+     `-.___'._\_.'
+
+*/
+
+searchTable = (category, column) => {
   // Declare variables
   var input, filter, table, tr, td, i;
   input = document.getElementById("searchField");
-  if (team) {
-    filter = team.toUpperCase();
-  } else {
-    column = "c1";
+  if (category && !input.value) {
+    filter = category.toUpperCase();
+    removeActiveCategoryFilter();
+    addActiveCategoryFilter(column);
+  } else if (!category && input.value) {
     filter = input.value.toUpperCase();
+  } else {
+    filter = input.value.toUpperCase();
+    removeActiveCategoryFilter();
+    addActiveCategoryFilter(column);
   }
   table = document.getElementById("players");
   tr = table.getElementsByTagName("tr");
-
-  removeActiveTeamFilter();
-  addActiveTeamFilter(column);
 
   // Loop through all table rows, and hide those who don't match the search query
   for (var i = 1; i < tr.length; i++) {
@@ -430,32 +438,26 @@ searchTable = (team, column) => {
       }
     }
   }
-  if (player_page) {
-    sortTable(0, false);
-  } else {
-    sortTable(2, true);
-  }
-  if (player_page) {
-    sumKillCount();
-  } else {
+  sortTable(2, true);
+  if (category == "overall") {
     sumXP();
   }
 };
 
-removeActiveTeamFilter = () => {
+removeActiveCategoryFilter = () => {
   for (
     var i = 0;
-    i < document.getElementsByClassName("teamSelect").length;
+    i < document.getElementsByClassName("categorySelect").length;
     i++
   ) {
     document
-      .getElementsByClassName("teamSelect")
-      [i].classList.remove("currentTeam");
+      .getElementsByClassName("categorySelect")
+      [i].classList.remove("currentCategory");
   }
 };
 
-addActiveTeamFilter = (column) => {
-  document.getElementsByClassName(column)[0].classList.add("currentTeam");
+addActiveCategoryFilter = (column) => {
+  document.getElementsByClassName(column)[0].classList.add("currentCategory");
 };
 
 sortTable = (column, resetSort) => {
@@ -467,6 +469,7 @@ sortTable = (column, resetSort) => {
     y,
     shouldSwitch,
     dir,
+    tableHeight,
     switchcount = 0;
   table = document.getElementById("players");
   switching = true;
@@ -478,30 +481,35 @@ sortTable = (column, resetSort) => {
   while (switching) {
     switching = false;
     rows = table.rows;
-    for (i = 1; i < rows.length - 2; i++) {
+    if (document.getElementsByClassName("c1 currentCategory")) {
+      tableHeight = 2;
+    } else {
+      tableHeight = 1;
+    }
+    for (i = 1; i < rows.length - tableHeight; i++) {
       shouldSwitch = false;
       x = rows[i].getElementsByTagName("TD")[column];
       y = rows[i + 1].getElementsByTagName("TD")[column];
-      if (column > 1) {
+      if (column > 0) {
         x = parseInt(x.innerHTML.replace(/\,/g, ""), 10);
         y = parseInt(y.innerHTML.replace(/\,/g, ""), 10);
       }
-      if (dir == "asc" && column <= 1) {
+      if (dir == "asc" && column == 0) {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           shouldSwitch = true;
           break;
         }
-      } else if (dir == "asc" && column > 1) {
+      } else if (dir == "asc" && column > 0) {
         if (x > y) {
           shouldSwitch = true;
           break;
         }
-      } else if (dir == "desc" && column <= 1) {
+      } else if (dir == "desc" && column == 0) {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
           shouldSwitch = true;
           break;
         }
-      } else if (dir == "desc" && column > 1) {
+      } else if (dir == "desc" && column > 0) {
         if (x < y) {
           shouldSwitch = true;
           break;

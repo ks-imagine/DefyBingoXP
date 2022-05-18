@@ -1,10 +1,5 @@
 // Notes
- - Finish Sort Bar functionality
-    - When click, highlight current selection
-    - When click, create columns of skills within category
- - Fix table sort (header click)
- - Finish Search Bar
-    - Remove ability to search XP values, only search first column
+ - Fix table sort when click category
  - Update table to display if max xp reached or pet received
  - Create pets column?
     - Number of pets received w/ icons?
@@ -23,4 +18,6 @@
         - Footer (Total XP, $total_xp, '', '')
     - Clickable sort bar similar to main page for each category filtering
 
- - Heroku CLI deployment
+
+
+ - git push heroku defy-total-xp-comp-2022:main
