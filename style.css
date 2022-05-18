@@ -42,9 +42,11 @@ table {
   width: 100%;
   opacity: 97%;
 }
+
 table td {
   padding: 15px;
 }
+
 table th {
   background-color: #54585d;
   color: #ffffff;
@@ -53,13 +55,16 @@ table th {
   border: 1px solid #54585d;
   padding: 8px;
 }
+
 table td {
   color: #303030;
   border: 1px solid #dddfe1;
 }
+
 table tr {
   background-color: #f9fafb;
 }
+
 table tr:nth-child(odd) {
   background-color: #ffffff;
 }
@@ -87,7 +92,8 @@ a {
 }
 
 #searchField {
-  width: 50%; /* Half-width */
+  width: 50%;
+  /* Half-width */
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
@@ -122,6 +128,7 @@ a {
   margin: auto;
   width: 100%;
 }
+
 @media screen and (max-width: 600px) {
   .container {
     margin: 15px;

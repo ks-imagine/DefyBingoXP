@@ -456,7 +456,7 @@ removeActiveCategoryFilter = () => {
   ) {
     document
       .getElementsByClassName("categorySelect")
-      [i].classList.remove("currentCategory");
+    [i].classList.remove("currentCategory");
   }
 };
 
@@ -536,7 +536,7 @@ sortTable = (column) => {
 colorCells = (category) => {
   const table = document.getElementById("players");
   for (var i = 1; i < table.rows.length - 1; i++) {
-    for(var j = 2; j < table.rows[i].cells.length; j++) {
+    for (var j = 2; j < table.rows[i].cells.length; j++) {
       if (category == "combat_fast" && table.rows[i].cells[j].innerHTML.replace(/,/g, "") == 2500000) {
         table.rows[i].cells[j].style.backgroundColor = "rgb(255, 0, 0, 0.4)";
       } else if (category == "skilling_buyable" && table.rows[i].cells[j].innerHTML.replace(/,/g, "") == 2500000) {
