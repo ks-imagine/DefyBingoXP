@@ -240,41 +240,41 @@ showExperienceData = (category, column) => {
     tab += "<th class='clickable' onclick='sortTable(2)'>Combat XP</th>";
     tab += "<th class='clickable' onclick='sortTable(3)'>Skilling XP</th>";
   } else if (category == "combat_fast") {
-    tab += "<th class='clickable' onclick='sortTable(1)'>Combat - Big XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(2)'>Magic XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(3)'>Ranged XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(4)'>Prayer XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(1)'><em>Combat - Big XP</em></th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Magic XP<br><img src='./images/Magic_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Ranged XP<br><img src='./images/Ranged_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Prayer XP<br><img src='./images/Prayer_icon.png' class='skillIcon'></th>";
   } else if (category == "combat_slow") {
-    tab += "<th class='clickable' onclick='sortTable(1)'>Combat - Melee</th>";
-    tab += "<th class='clickable' onclick='sortTable(2)'>Attack XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(3)'>Strength XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(4)'>Defense XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(5)'>Hitpoints XP</th>";
+    tab += "<th class='clickable' onclick='sortTable(1)'><em>Combat - Melee</em></th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Attack XP<br><img src='./images/Attack_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Strength XP<br><img src='./images/Strength_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Defence XP<br><img src='./images/Defence_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(5)'>Hitpoints XP<br><img src='./images/Hitpoints_icon.png' class='skillIcon'></th>";
   } else if (category == "skilling_buyable") {
     tab +=
-      "<th class='clickable' onclick='sortTable(1)'>Skilling - Big XP Buyables</th>";
-    tab += "<th class='clickable' onclick='sortTable(2)'>Construction XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(3)'>Farming XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(4)'>Fletching XP</th>";
+      "<th class='clickable' onclick='sortTable(1)'><em>Skilling - Big XP Buyables</em></th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Construction XP<br><img src='./images/Construction_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Farming XP<br><img src='./images/Farming_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Fletching XP<br><img src='./images/Fletching_icon.png' class='skillIcon'></th>";
   } else if (category == "skilling_fast") {
     tab +=
-      "<th class='clickable' onclick='sortTable(1)'>Skilling - Fast Gains</th>";
-    tab += "<th class='clickable' onclick='sortTable(2)'>Cooking XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(3)'>Herblore XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(4)'>Crafting XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(5)'>Smithing XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(6)'>Firemaking XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(7)'>Thieving XP</th>";
+      "<th class='clickable' onclick='sortTable(1)'><em>Skilling - Fast Gains</em></th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Cooking XP<br><img src='./images/Cooking_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Herblore XP<br><img src='./images/Herblore_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Crafting XP<br><img src='./images/Crafting_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(5)'>Smithing XP<br><img src='./images/Smithing_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(6)'>Firemaking XP<br><img src='./images/Firemaking_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(7)'>Thieving XP<br><img src='./images/Thieving_icon.png' class='skillIcon'></th>";
   } else if (category == "skilling_slow") {
     tab +=
-      "<th class='clickable' onclick='sortTable(1)'>Skilling - Slow Gains</th>";
-    tab += "<th class='clickable' onclick='sortTable(2)'>Agility XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(3)'>Mining XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(4)'>Fishing XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(5)'>Hunter XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(6)'>Slayer XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(7)'>Runecrafting XP</th>";
-    tab += "<th class='clickable' onclick='sortTable(8)'>Woodcutting XP</th>";
+      "<th class='clickable' onclick='sortTable(1)'><em>Skilling - Slow Gains</em></th>";
+    tab += "<th class='clickable' onclick='sortTable(2)'>Agility XP<br><img src='./images/Agility_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(3)'>Mining XP<br><img src='./images/Mining_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(4)'>Fishing XP<br><img src='./images/Fishing_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(5)'>Hunter XP<br><img src='./images/Hunter_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(6)'>Slayer XP<br><img src='./images/Slayer_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(7)'>Runecrafting XP<br><img src='./images/Runecraft_icon.png' class='skillIcon'></th>";
+    tab += "<th class='clickable' onclick='sortTable(8)'>Woodcutting XP<br><img src='./images/Woodcutting_icon.png' class='skillIcon'></th>";
   }
   tab += "</tr>";
   for (let p of window.PLAYER_ARRAY) {
@@ -346,6 +346,7 @@ showExperienceData = (category, column) => {
   }
   document.getElementById("searchField").value = "";
   sortTable(1, true);
+  colorCells(category);
 };
 
 sumXP = () => {
@@ -415,6 +416,9 @@ searchTable = (category, column) => {
     addActiveCategoryFilter(column);
   } else if (!category && input.value) {
     filter = input.value.toUpperCase();
+  } else if (!category && !input.value) {
+    showExperienceData('overall');
+    return;
   } else {
     filter = input.value.toUpperCase();
     removeActiveCategoryFilter();
@@ -457,7 +461,11 @@ removeActiveCategoryFilter = () => {
 };
 
 addActiveCategoryFilter = (column) => {
-  document.getElementsByClassName(column)[0].classList.add("currentCategory");
+  if (!column) {
+    showExperienceData('overall', 'c1');
+  } else {
+    document.getElementsByClassName(column)[0].classList.add("currentCategory");
+  }
 };
 
 sortTable = (column, resetSort) => {
@@ -528,6 +536,23 @@ sortTable = (column, resetSort) => {
     }
   }
 };
+
+colorCells = (category) => {
+  const table = document.getElementById("players");
+  for (var i = 1; i < table.rows.length - 1; i++) {
+    for(var j = 2; j < table.rows[i].cells.length; j++) {
+      if (category == "combat_fast" && table.rows[i].cells[j].innerHTML.replace(/,/g, "") == 2500000) {
+        table.rows[i].cells[j].style.backgroundColor = "rgb(255, 0, 0, 0.4)";
+      } else if (category == "skilling_buyable" && table.rows[i].cells[j].innerHTML.replace(/,/g, "") == 2500000) {
+        table.rows[i].cells[j].style.backgroundColor = "rgb(0, 204, 0, 0.4)";
+      } else if (category == "combat_slow" && table.rows[i].cells[j].innerHTML.replace(/,/g, "") >= 5000000) {
+        table.rows[i].cells[j].style.backgroundColor = "rgb(0, 176, 240, 0.4)";
+      } else if (category == "skilling_fast" && table.rows[i].cells[j].innerHTML.replace(/,/g, "") >= 5000000) {
+        table.rows[i].cells[j].style.backgroundColor = "rgb(255, 102, 0, 0.4)";
+      }
+    }
+  }
+}
 
 /*
  _______

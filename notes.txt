@@ -1,5 +1,4 @@
 // Notes
- - Fix table sort when click category
  - Update table to display if max xp reached or pet received
  - Create pets column?
     - Number of pets received w/ icons?

@@ -33,6 +33,7 @@ table th {
   font-weight: bold;
   font-size: 13px;
   border: 1px solid #54585d;
+  padding: 8px;
 }
 table td {
   color: #303030;
@@ -49,6 +50,10 @@ th,
 tr,
 td {
   text-align: left;
+}
+
+th:not(:last-child) {
+  border-right-color: white;
 }
 
 a {
@@ -70,6 +75,11 @@ a {
 
 .clickable {
   cursor: pointer;
+  vertical-align: top;
+}
+
+.skillIcon {
+  padding-top: 4px;
 }
 
 #totals {
@@ -88,8 +98,28 @@ a {
   background-color: rgb(177, 177, 177);
 }
 
+.c2.currentCategory {
+  background-color: rgb(255, 0, 0, 0.4);
+}
+
+.c3.currentCategory {
+  background-color: rgb(0, 176, 240, 0.4);
+}
+
+.c4.currentCategory {
+  background-color: rgb(0, 204, 0, 0.4);
+}
+
+.c5.currentCategory {
+  background-color: rgb(255, 102, 0, 0.4);
+}
+
+.c6.currentCategory {
+  background-color: rgb(255, 255, 0, 0.4);
+}
+
 .categorySelect:active {
-  background-color: #3e8e41;
+  background-color: #777777;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
@@ -97,20 +127,4 @@ a {
 #comingSoon {
   font-size: 18px;
   padding-bottom: 12px;
-}
-
-.defy-red {
-  color: rgb(255, 0, 0, 0.8);
-}
-.defy-green {
-  color: rgb(0, 204, 0, 0.8);
-}
-.defy-blue {
-  color: rgb(0, 176, 240, 0.8);
-}
-.defy-orange {
-  color: rgb(255, 102, 0, 0.8);
-}
-.defy-yellow {
-  color: rgb(255, 255, 0, 0.8);
 }
