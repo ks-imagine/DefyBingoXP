@@ -11,7 +11,6 @@
 
 <body>
   <h1><a href="./home.html">Clan Defy</a></h1>
-  <a href="./player.html">PLAYER PAGE TEMP</a>
   <img src="./images/clan-defy-logo.png" id="defy-logo">
   <h2><a href="./home.html">Total XP Competition</a></h2>
   </a>
@@ -27,15 +26,15 @@
     <table id="categories" class="clickable">
       <tr>
         <td class="c1 categorySelect currentCategory" onclick="showExperienceData('overall', 'c1')">Overall</td>
-        <td class="c2 categorySelect" onclick="showExperienceData('combat_fast', 'c2')">Combat - Big XP</td>
-        <td class="c3 categorySelect" onclick="showExperienceData('combat_slow', 'c3')">Combat - Melee</td>
-        <td class="c4 categorySelect" onclick="showExperienceData('skilling_buyable', 'c4')">Skilling - Big XP Buyables
-        </td>
-        <td class="c5 categorySelect" onclick="showExperienceData('skilling_fast', 'c5')">Skilling - Fast Gains</td>
-        <td class="c6 categorySelect" onclick="showExperienceData('skilling_slow', 'c6')">Skilling - Slow Gains</td>
+        <td class="c2 categorySelect" onclick="showExperienceData('combat_fast', 'c2')">Combat - Big XP <br/><sub>2.5M XP CAP</sub></td>
+        <td class="c3 categorySelect" onclick="showExperienceData('combat_slow', 'c3')">Combat - Melee <br/><sub>5M XP CAP</sub></td>
+        <td class="c4 categorySelect" onclick="showExperienceData('skilling_buyable', 'c4')">Skilling - Big XP Buyables <br/><sub>2.5M XP CAP</sub></td>
+        <td class="c5 categorySelect" onclick="showExperienceData('skilling_fast', 'c5')">Skilling - Fast Gains <br/><sub>5M XP CAP</sub></td>
+        <td class="c6 categorySelect" onclick="showExperienceData('skilling_slow', 'c6')">Skilling - Slow Gains <br/><sub>NO XP CAP</sub></td>
       </tr>
     </table>
     <br />
+    <div id="errorMessage" class="popup"></div>
     <!-- table for showing data -->
     <table id="players"></table>
     <br />

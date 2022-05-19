@@ -79,6 +79,13 @@ a {
   color: inherit;
 }
 
+sub {
+  font-size: 11px;
+  position: relative;
+  top: -0.5em;
+  font-style: italic;
+}
+
 #defy-logo {
   width: 150px;
   height: auto;
@@ -103,6 +110,22 @@ a {
 
 #loading {
   padding-bottom: 10px;
+}
+
+#errorMessage {
+  color: red;
+  font-size: 24px;
+  margin: -10px 0px 10px 0px;
+}
+
+.popup {
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.show {
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
 }
 
 .clickable {
