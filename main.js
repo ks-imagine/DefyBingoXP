@@ -14,8 +14,8 @@
 
 */
 
-const competition_id = 10087; // testing
-// const competition_id = 11584; // live
+// const competition_id = 10087; // testing
+const competition_id = 11584; // live
 
 const competition_url = `https://api.wiseoldman.net/competitions/${competition_id}`;
 const metric_url = `https://api.wiseoldman.net/competitions/${competition_id}?metric=`;
@@ -190,7 +190,11 @@ calcTotalXP = () => {
     window.PLAYER_ARRAY[i].totalXP =
       window.PLAYER_ARRAY[i].combatXP + window.PLAYER_ARRAY[i].skillingXP;
   }
-  showExperienceData();
+  if (!player_page) {
+    showExperienceData();
+  } else {
+    showPlayerData();
+  }
 };
 
 // This can only be done every 24 hours. Update via bookmarklet on WiseOldMan competition page instead.

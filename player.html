@@ -3,6 +3,7 @@
 
 <head>
   <script src="main.js"></script>
+  <script src="player.js"></script>
   <link rel="stylesheet" href="style.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +12,6 @@
 
 <body>
   <h1><a href="./home.html">Clan Defy</a></h1>
-  <a href="./player.html">PLAYER PAGE TEMP</a>
   <img src="./images/clan-defy-logo.png" id="defy-logo">
   <h2><a href="./home.html">Total XP Competition</a></h2>
   </a>
@@ -22,7 +22,6 @@
       <br />This may take a while...
     </span>
   </div>
-  <input type="text" id="searchField" onkeyup="searchTable()" placeholder="Search here.." />
   <div class="container">
     <table id="categories" class="clickable">
       <tr>
@@ -36,8 +35,9 @@
       </tr>
     </table>
     <br />
+    <div id="player-name"></div>
     <!-- table for showing data -->
-    <table id="players"></table>
+    <table id="individual"></table>
     <br />
     <h5>Source Code : <a
         href="https://github.com/ks-imagine/defy-osrs-contests/tree/defy-total-xp-comp-2022" target="_blank">https://github.com/ks-imagine/defy-osrs-contests/tree/defy-total-xp-comp-2022</a>
