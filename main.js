@@ -75,7 +75,10 @@ const player_page = window.location.href.includes("player");
 */
 
 // Function to hide the loader
-hideloader = () => {
+showLoader = () => {
+  document.getElementById("loading").style.display = "block";
+};
+hideLoader = () => {
   document.getElementById("loading").style.display = "none";
 };
 
@@ -83,10 +86,11 @@ hideloader = () => {
 getapi = async (url) => {
   // Storing response
   const response = await fetch(url);
+  showLoader();
   // Storing data in form of JSON
   var data = await response.json();
   if (response) {
-    hideloader();
+    setTimeout(() => { hideLoader(); }, 5000);
   }
   createPlayerArray(data);
 };
@@ -119,9 +123,10 @@ createPlayerArray = (data) => {
 getSkillXP = async (url, skillName, skillCategory) => {
   // Storing response
   const response = await fetch(url);
+  showLoader();
   var data = await response.json();
   if (response) {
-    hideloader();
+    setTimeout(() => { hideLoader(); }, 5000);
   }
   for (var i = 0; i < data.participants.length; i++) {
     for (var j = 0; j < window.PLAYER_ARRAY.length; j++) {
@@ -421,7 +426,7 @@ sumXP = () => {
 
 window.onerror = () => {
   showErrorMessage(
-    "Oops! You clicked too fast. Please wait a few seconds for data to populate."
+    "Oops, something went wrong! Please wait a few seconds for the data to populate."
   );
 };
 

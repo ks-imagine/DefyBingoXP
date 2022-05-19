@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 span {
-  color: #303030;
+  color: crimson;
   margin: 10px;
 }
 
@@ -113,7 +113,7 @@ sub {
 }
 
 #errorMessage {
-  color: red;
+  color: crimson;
   font-size: 24px;
   margin: -10px 0px 10px 0px;
 }
