@@ -1,11 +1,11 @@
 // Player Page JS
 const queryString = window.location.search;
 const playerName = new URLSearchParams(queryString).get('player');
-let initial = true;
+let initialCall = true;
 
 showPlayerData = () => {
-    if (firstPageLoad) {
+    if (initialCall) {
         document.getElementById('player-name').innerHTML = playerName;
-        firstPageLoad = false;
+        initialCall = false;
     }
 }
