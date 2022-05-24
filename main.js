@@ -125,9 +125,6 @@ getSkillXP = async (url, skillName, skillCategory) => {
   const response = await fetch(url);
   showLoader();
   var data = await response.json();
-  if (response) {
-    setTimeout(() => { hideLoader(); }, 5000);
-  }
   for (var i = 0; i < data.participants.length; i++) {
     for (var j = 0; j < window.PLAYER_ARRAY.length; j++) {
       if (data.participants[i].displayName == window.PLAYER_ARRAY[j].name) {
