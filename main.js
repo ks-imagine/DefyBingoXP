@@ -15,7 +15,7 @@
 */
 
 // const competition_id = 10087; // testing
-const competition_id = 11584; // live
+const competition_id = 11769; // live
 
 const competition_url = `https://api.wiseoldman.net/competitions/${competition_id}`;
 const metric_url = `https://api.wiseoldman.net/competitions/${competition_id}?metric=`;
