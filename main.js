@@ -199,29 +199,6 @@ calcTotalXP = () => {
   }
 };
 
-// This can only be done every 24 hours. Update via bookmarklet on WiseOldMan competition page instead.
-updatePlayers = async () => {
-  const settings = {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ verificationCode: "033-031-170" }),
-  };
-  try {
-    const fetchResponse = await fetch(
-      competition_url + "/update-all",
-      settings
-    );
-    const data = await fetchResponse.json();
-    console.log(data);
-  } catch (e) {
-    console.log(e);
-  }
-};
-// updatePlayers();
-
 /*
  ___________________________
 < Functions - Tables & Sums >
