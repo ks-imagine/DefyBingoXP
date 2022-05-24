@@ -36,10 +36,10 @@ const all_skills = {
   smithing: "skilling_fast",
   firemaking: "skilling_fast",
   thieving: "skilling_fast",
+  hunter: "skilling_fast",
   agility: "skilling_slow",
   mining: "skilling_slow",
   fishing: "skilling_slow",
-  hunter: "skilling_slow",
   slayer: "skilling_slow",
   runecrafting: "skilling_slow",
   woodcutting: "skilling_slow",
@@ -90,7 +90,9 @@ getapi = async (url) => {
   // Storing data in form of JSON
   var data = await response.json();
   if (response) {
-    setTimeout(() => { hideLoader(); }, 3500);
+    setTimeout(() => {
+      hideLoader();
+    }, 3500);
   }
   createPlayerArray(data);
 };
@@ -170,9 +172,9 @@ getSkillXP = async (url, skillName, skillCategory) => {
           }
         } else {
           window.PLAYER_ARRAY[j].skills[skillName] =
-            data.participants[i].progress.gained;
+            Math.ceil(data.participants[i].progress.gained * 2.5);
           window.PLAYER_ARRAY[j].skilling_slow +=
-            data.participants[i].progress.gained;
+            Math.ceil(data.participants[i].progress.gained * 2.5);
         }
       }
     }
@@ -266,6 +268,8 @@ showExperienceData = (category, column) => {
       "<th class='clickable' onclick='sortTable(6)'>Firemaking XP<br><img src='./images/Firemaking_icon.png' class='skillIcon'></th>";
     tab +=
       "<th class='clickable' onclick='sortTable(7)'>Thieving XP<br><img src='./images/Thieving_icon.png' class='skillIcon'></th>";
+    tab +=
+      "<th class='clickable' onclick='sortTable(8)'>Hunter XP<br><img src='./images/Hunter_icon.png' class='skillIcon'></th>";
   } else if (category == "skilling_slow") {
     tab +=
       "<th class='clickable' onclick='sortTable(1)'><em>Skilling - Slow Gains</em></th>";
@@ -276,13 +280,11 @@ showExperienceData = (category, column) => {
     tab +=
       "<th class='clickable' onclick='sortTable(4)'>Fishing XP<br><img src='./images/Fishing_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(5)'>Hunter XP<br><img src='./images/Hunter_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(5)'>Slayer XP<br><img src='./images/Slayer_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(6)'>Slayer XP<br><img src='./images/Slayer_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(6)'>Runecrafting XP<br><img src='./images/Runecraft_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(7)'>Runecrafting XP<br><img src='./images/Runecraft_icon.png' class='skillIcon'></th>";
-    tab +=
-      "<th class='clickable' onclick='sortTable(8)'>Woodcutting XP<br><img src='./images/Woodcutting_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(7)'>Woodcutting XP<br><img src='./images/Woodcutting_icon.png' class='skillIcon'></th>";
   }
   tab += "</tr>";
   for (let p of window.PLAYER_ARRAY) {
@@ -328,6 +330,7 @@ showExperienceData = (category, column) => {
       <td>${p.skills.smithing.toLocaleString("en-US")} </td>
       <td>${p.skills.firemaking.toLocaleString("en-US")} </td>
       <td>${p.skills.thieving.toLocaleString("en-US")} </td>
+      <td>${p.skills.hunter.toLocaleString("en-US")} </td>
       </tr>`;
     } else if (category == "skilling_slow") {
       tab += `<tr>
@@ -336,7 +339,6 @@ showExperienceData = (category, column) => {
       <td>${p.skills.agility.toLocaleString("en-US")} </td>
       <td>${p.skills.mining.toLocaleString("en-US")} </td>
       <td>${p.skills.fishing.toLocaleString("en-US")} </td>
-      <td>${p.skills.hunter.toLocaleString("en-US")} </td>
       <td>${p.skills.slayer.toLocaleString("en-US")} </td>
       <td>${p.skills.runecrafting.toLocaleString("en-US")} </td>
       <td>${p.skills.woodcutting.toLocaleString("en-US")} </td>
