@@ -16,3 +16,7 @@
 
 
  - git push heroku defy-total-xp-comp-2022:main
+
+
+
+ file:///D:/Documents/Development/Defy/BingoXP/player.html?player=The%20Western
