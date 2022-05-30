@@ -58,6 +58,7 @@ const player_pets = {
   beaver: [],
 };
 const player_page = window.location.href.includes("player");
+let category, column;
 
 /*
  ___________________________
@@ -171,10 +172,12 @@ getSkillXP = async (url, skillName, skillCategory) => {
             window.PLAYER_ARRAY[j].skilling_fast += 5000000;
           }
         } else {
-          window.PLAYER_ARRAY[j].skills[skillName] =
-            Math.ceil(data.participants[i].progress.gained * 2.5);
-          window.PLAYER_ARRAY[j].skilling_slow +=
-            Math.ceil(data.participants[i].progress.gained * 2.5);
+          window.PLAYER_ARRAY[j].skills[skillName] = Math.ceil(
+            data.participants[i].progress.gained * 2.5
+          );
+          window.PLAYER_ARRAY[j].skilling_slow += Math.ceil(
+            data.participants[i].progress.gained * 2.5
+          );
         }
       }
     }
@@ -434,47 +437,47 @@ showErrorMessage = (msg) => {
 
 */
 
-searchTable = (category, column) => {
-  // Declare variables
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("searchField");
-  if (category && !input.value) {
-    filter = category.toUpperCase();
-    removeActiveCategoryFilter();
-    addActiveCategoryFilter(column);
-  } else if (!category && input.value) {
-    filter = input.value.toUpperCase();
-  } else if (!category && !input.value) {
-    showExperienceData("overall");
-    return;
-  } else {
-    filter = input.value.toUpperCase();
-    removeActiveCategoryFilter();
-    addActiveCategoryFilter(column);
-  }
-  table = document.getElementById("players");
-  tr = table.getElementsByTagName("tr");
+// Search Functionality
+let searchInput;
+let timeout = null;
 
-  // Loop through all table rows, and hide those who don't match the search query
-  for (var i = 1; i < tr.length; i++) {
-    // Hide the row initially.
-    tr[i].classList.add("hide");
-    td = tr[i].getElementsByTagName("td");
-    for (var j = 0; j < 2; j++) {
-      cell = tr[i].getElementsByTagName("td")[j];
-      if (cell) {
-        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
-          tr[i].classList.remove("hide");
-          break;
+setTimeout(() => {
+  searchInput = document.getElementById("searchField");
+  searchInput.addEventListener("keyup", function (e) {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("searchField");
+      filter = input.value.toUpperCase();
+
+      table = document.getElementById("players");
+      tr = table.getElementsByTagName("tr");
+      if (filter) {
+        try {
+          document.getElementById("totals").classList.add("hide");
+        } catch (e) {}
+        for (var i = 1; i < tr.length; i++) {
+          // Hide the row initially.
+          tr[i].classList.add("hide");
+          td = tr[i].getElementsByTagName("td");
+          for (var j = 0; j < 2; j++) {
+            cell = tr[i].getElementsByTagName("td")[j];
+            if (cell) {
+              if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].classList.remove("hide");
+                break;
+              }
+            }
+          }
         }
+        sortTable(2);
+      } else {
+        showExperienceData();
       }
-    }
-  }
-  sortTable(2);
-  if (category == "overall") {
-    sumXP();
-  }
-};
+      // Loop through all table rows, and hide those who don't match the search query
+    }, 1000);
+  });
+}, 1000);
 
 removeActiveCategoryFilter = () => {
   for (

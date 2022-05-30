@@ -138,7 +138,7 @@ sub {
 }
 
 #totals {
-  display: contents !important;
+  display: contents;
 }
 
 .container {
@@ -154,7 +154,7 @@ sub {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .currentCategory {
