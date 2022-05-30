@@ -475,7 +475,7 @@ setTimeout(() => {
         showExperienceData();
       }
       // Loop through all table rows, and hide those who don't match the search query
-    }, 1000);
+    }, 2500);
   });
 }, 1000);
 
