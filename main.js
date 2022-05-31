@@ -441,7 +441,7 @@ showErrorMessage = (msg) => {
 let searchInput;
 let timeout = null;
 
-setTimeout(() => {
+addSearch = () => {
   searchInput = document.getElementById("searchField");
   searchInput.addEventListener("keyup", function (e) {
     clearTimeout(timeout);
@@ -477,7 +477,7 @@ setTimeout(() => {
       // Loop through all table rows, and hide those who don't match the search query
     }, 2500);
   });
-}, 1000);
+};
 
 removeActiveCategoryFilter = () => {
   for (
@@ -608,5 +608,6 @@ colorCells = (category) => {
      `-.___'._\_.'
 */
 
-// Call async function (start)
+// Add event listeners and run functions
+addSearch();
 getapi(competition_url);
