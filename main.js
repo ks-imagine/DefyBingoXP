@@ -46,19 +46,13 @@ const all_skills = {
 };
 // manually update
 const player_pets = {
-  farming: ["The Western", "Blunko"],
-  pvm: ["The Western", "Blunko"],
-  thieving: [],
-  agility: [],
-  mining: [],
-  fishing: [],
-  hunter: ["The Western", "Blunko"],
-  slayer: [],
-  runecrafting: [],
-  beaver: [],
+  "vonzlex" : {
+    "pvm" : "./images/pets/Prince_black_dragon.png",
+  }
 };
 const player_page = window.location.href.includes("player");
 let category, column;
+let apiReqCount = 0;
 
 /*
  ___________________________
@@ -84,17 +78,13 @@ hideLoader = () => {
 };
 
 // Async function for competition data
-getapi = async (url) => {
+getData = async (url) => {
   // Storing response
   const response = await fetch(url);
   showLoader();
   // Storing data in form of JSON
   var data = await response.json();
-  if (response) {
-    setTimeout(() => {
-      hideLoader();
-    }, 3500);
-  }
+  apiReqCount++;
   createPlayerArray(data);
 };
 
@@ -102,18 +92,20 @@ getapi = async (url) => {
 createPlayerArray = (data) => {
   let playerArray = [];
   for (var i = 0; i < data.participants.length; i++) {
-    playerArray.push({
-      name: data.participants[i].displayName,
-      totalXP: 0,
-      combatXP: 0,
-      skillingXP: 0,
-      combat_fast: 0,
-      combat_slow: 0,
-      skilling_buyable: 0,
-      skilling_fast: 0,
-      skilling_slow: 0,
-      skills: {},
-    });
+    if (data.participants[i].progress.gained > 0) {
+      playerArray.push({
+        name: data.participants[i].displayName,
+        totalXP: data.participants[i].progress.gained,
+        combatXP: 0,
+        skillingXP: 0,
+        combat_fast: 0,
+        combat_slow: 0,
+        skilling_buyable: 0,
+        skilling_fast: 0,
+        skilling_slow: 0,
+        skills: {},
+      });
+    }
   }
   window.PLAYER_ARRAY = playerArray;
 
@@ -126,8 +118,8 @@ createPlayerArray = (data) => {
 getSkillXP = async (url, skillName, skillCategory) => {
   // Storing response
   const response = await fetch(url);
-  showLoader();
   var data = await response.json();
+  apiReqCount++;
   for (var i = 0; i < data.participants.length; i++) {
     for (var j = 0; j < window.PLAYER_ARRAY.length; j++) {
       if (data.participants[i].displayName == window.PLAYER_ARRAY[j].name) {
@@ -182,8 +174,80 @@ getSkillXP = async (url, skillName, skillCategory) => {
       }
     }
   }
-  calcTotalXP();
+  if (apiReqCount == 24) {
+    checkPets();
+  }
 };
+
+checkPets = () => {
+  for (var i = 0; i < window.PLAYER_ARRAY.length; i++) {
+    const currentPlayer = window.PLAYER_ARRAY[i].name.toLowerCase();
+    if (player_pets[currentPlayer]) {
+        if (player_pets[currentPlayer].pvm) {
+          if (window.PLAYER_ARRAY[i].skills.hitpoints <= 4000000) {
+          window.PLAYER_ARRAY[i].skills.hitpoints += 1000000;
+          window.PLAYER_ARRAY[i].combat_slow += 1000000;
+          } else {
+            window.PLAYER_ARRAY[i].combat_slow += 5000000 - window.PLAYER_ARRAY[i].skills.hitpoints;
+            window.PLAYER_ARRAY[i].skills.hitpoints = 5000000;
+          }
+        }
+        if (player_pets[currentPlayer].farming) {
+          if (window.PLAYER_ARRAY[i].skills.farming <= 1500000) {
+          window.PLAYER_ARRAY[i].skills.farming += 1000000;
+          window.PLAYER_ARRAY[i].skilling_buyable += 1000000;
+          } else {
+            window.PLAYER_ARRAY[i].skilling_buyable += 2500000 - window.PLAYER_ARRAY[i].skills.farming;
+            window.PLAYER_ARRAY[i].skills.farming = 2500000;
+          }
+        }
+        if (player_pets[currentPlayer].thieving) {
+          if (window.PLAYER_ARRAY[i].skills.thieving <= 4000000) {
+          window.PLAYER_ARRAY[i].skills.thieving += 1000000;
+          window.PLAYER_ARRAY[i].skilling_fast += 1000000;
+          } else {
+            window.PLAYER_ARRAY[i].skilling_fast += 5000000 - window.PLAYER_ARRAY[i].skills.thieving;
+            window.PLAYER_ARRAY[i].skills.thieving = 5000000;
+          }
+        }
+        if (player_pets[currentPlayer].hunter) {
+          if (window.PLAYER_ARRAY[i].skills.hunter <= 4000000) {
+          window.PLAYER_ARRAY[i].skills.hunter += 1000000;
+          window.PLAYER_ARRAY[i].skilling_fast += 1000000;
+          } else {
+            window.PLAYER_ARRAY[i].skilling_fast += 5000000 - window.PLAYER_ARRAY[i].skills.hunter;
+            window.PLAYER_ARRAY[i].skills.hunter = 5000000;
+          }
+        }
+        if (player_pets[currentPlayer].agility) {
+          window.PLAYER_ARRAY[i].skills.agility += 1000000;
+          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+        }
+        if (player_pets[currentPlayer].mining) {
+          window.PLAYER_ARRAY[i].skills.mining += 1000000;
+          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+        }
+        if (player_pets[currentPlayer].fishing) {
+          window.PLAYER_ARRAY[i].skills.fishing += 1000000;
+          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+        }
+        if (player_pets[currentPlayer].slayer) {
+          window.PLAYER_ARRAY[i].skills.slayer += 1000000;
+          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+        }
+        if (player_pets[currentPlayer].runecrafting) {
+          window.PLAYER_ARRAY[i].skills.runecrafting += 1000000;
+          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+        }
+        if (player_pets[currentPlayer].woodcutting) {
+          window.PLAYER_ARRAY[i].skills.woodcutting += 1000000;
+          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+        }
+      }
+    }
+  calcTotalXP();
+}
+
 
 // Array to calculate skilling XP
 calcTotalXP = () => {
@@ -197,11 +261,8 @@ calcTotalXP = () => {
     window.PLAYER_ARRAY[i].totalXP =
       window.PLAYER_ARRAY[i].combatXP + window.PLAYER_ARRAY[i].skillingXP;
   }
-  if (!player_page) {
-    showExperienceData();
-  } else {
-    showPlayerData();
-  }
+  hideLoader();
+  showExperienceData();
 };
 
 /*
@@ -293,59 +354,59 @@ showExperienceData = (category, column) => {
   for (let p of window.PLAYER_ARRAY) {
     if (category == "overall" || !category) {
       tab += `<tr>
-      <td>${p.name}</td>
-      <td>${p.totalXP.toLocaleString("en-US")} </td>
-      <td>${p.combatXP.toLocaleString("en-US")} </td>
-      <td>${p.skillingXP.toLocaleString("en-US")} </td>
-      </tr>`;
+        <td>${p.name}</td>
+        <td>${p.totalXP.toLocaleString("en-US")} </td>
+        <td>${p.combatXP.toLocaleString("en-US")} </td>
+        <td>${p.skillingXP.toLocaleString("en-US")} </td>
+        </tr>`;
     } else if (category == "combat_fast") {
       tab += `<tr>
-      <td>${p.name}</td>
-      <td>${p.combat_fast.toLocaleString("en-US")} </td>
-      <td>${p.skills.magic.toLocaleString("en-US")} </td>
-      <td>${p.skills.ranged.toLocaleString("en-US")} </td>
-      <td>${p.skills.prayer.toLocaleString("en-US")} </td>
-      </tr>`;
+        <td>${p.name}</td>
+        <td>${p.combat_fast.toLocaleString("en-US")} </td>
+        <td>${p.skills.magic.toLocaleString("en-US")} </td>
+        <td>${p.skills.ranged.toLocaleString("en-US")} </td>
+        <td>${p.skills.prayer.toLocaleString("en-US")} </td>
+        </tr>`;
     } else if (category == "combat_slow") {
       tab += `<tr>
-      <td>${p.name}</td>
-      <td>${p.combat_slow.toLocaleString("en-US")} </td>
-      <td>${p.skills.attack.toLocaleString("en-US")} </td>
-      <td>${p.skills.strength.toLocaleString("en-US")} </td>
-      <td>${p.skills.defence.toLocaleString("en-US")} </td>
-      <td>${p.skills.hitpoints.toLocaleString("en-US")} </td>
-      </tr>`;
+        <td>${p.name}</td>
+        <td>${p.combat_slow.toLocaleString("en-US")} </td>
+        <td>${p.skills.attack.toLocaleString("en-US")} </td>
+        <td>${p.skills.strength.toLocaleString("en-US")} </td>
+        <td>${p.skills.defence.toLocaleString("en-US")} </td>
+        <td>${p.skills.hitpoints.toLocaleString("en-US")} </td>
+        </tr>`;
     } else if (category == "skilling_buyable") {
       tab += `<tr>
-      <td>${p.name}</td>
-      <td>${p.skilling_buyable.toLocaleString("en-US")} </td>
-      <td>${p.skills.construction.toLocaleString("en-US")} </td>
-      <td>${p.skills.farming.toLocaleString("en-US")} </td>
-      <td>${p.skills.fletching.toLocaleString("en-US")} </td>
-      </tr>`;
+        <td>${p.name}</td>
+        <td>${p.skilling_buyable.toLocaleString("en-US")} </td>
+        <td>${p.skills.construction.toLocaleString("en-US")} </td>
+        <td>${p.skills.farming.toLocaleString("en-US")} </td>
+        <td>${p.skills.fletching.toLocaleString("en-US")} </td>
+        </tr>`;
     } else if (category == "skilling_fast") {
       tab += `<tr>
-      <td>${p.name}</td>
-      <td>${p.skilling_fast.toLocaleString("en-US")} </td>
-      <td>${p.skills.cooking.toLocaleString("en-US")} </td>
-      <td>${p.skills.herblore.toLocaleString("en-US")} </td>
-      <td>${p.skills.crafting.toLocaleString("en-US")} </td>
-      <td>${p.skills.smithing.toLocaleString("en-US")} </td>
-      <td>${p.skills.firemaking.toLocaleString("en-US")} </td>
-      <td>${p.skills.thieving.toLocaleString("en-US")} </td>
-      <td>${p.skills.hunter.toLocaleString("en-US")} </td>
-      </tr>`;
+        <td>${p.name}</td>
+        <td>${p.skilling_fast.toLocaleString("en-US")} </td>
+        <td>${p.skills.cooking.toLocaleString("en-US")} </td>
+        <td>${p.skills.herblore.toLocaleString("en-US")} </td>
+        <td>${p.skills.crafting.toLocaleString("en-US")} </td>
+        <td>${p.skills.smithing.toLocaleString("en-US")} </td>
+        <td>${p.skills.firemaking.toLocaleString("en-US")} </td>
+        <td>${p.skills.thieving.toLocaleString("en-US")} </td>
+        <td>${p.skills.hunter.toLocaleString("en-US")} </td>
+        </tr>`;
     } else if (category == "skilling_slow") {
       tab += `<tr>
-      <td>${p.name}</td>
-      <td>${p.skilling_slow.toLocaleString("en-US")} </td>
-      <td>${p.skills.agility.toLocaleString("en-US")} </td>
-      <td>${p.skills.mining.toLocaleString("en-US")} </td>
-      <td>${p.skills.fishing.toLocaleString("en-US")} </td>
-      <td>${p.skills.slayer.toLocaleString("en-US")} </td>
-      <td>${p.skills.runecrafting.toLocaleString("en-US")} </td>
-      <td>${p.skills.woodcutting.toLocaleString("en-US")} </td>
-      </tr>`;
+        <td>${p.name}</td>
+        <td>${p.skilling_slow.toLocaleString("en-US")} </td>
+        <td>${p.skills.agility.toLocaleString("en-US")} </td>
+        <td>${p.skills.mining.toLocaleString("en-US")} </td>
+        <td>${p.skills.fishing.toLocaleString("en-US")} </td>
+        <td>${p.skills.slayer.toLocaleString("en-US")} </td>
+        <td>${p.skills.runecrafting.toLocaleString("en-US")} </td>
+        <td>${p.skills.woodcutting.toLocaleString("en-US")} </td>
+        </tr>`;
     }
   }
   table.innerHTML = tab;
@@ -610,4 +671,4 @@ colorCells = (category) => {
 
 // Add event listeners and run functions
 addSearch();
-getapi(competition_url);
+getData(competition_url);
