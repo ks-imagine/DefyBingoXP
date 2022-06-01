@@ -187,9 +187,30 @@ sub {
   transform: translateY(4px);
 }
 
-#comingSoon {
+#player-name {
+  font-size: 50px;
+  padding: 30px 0px;
+  color: blue;
+  font-style: italic;
+}
+
+.player {
+  width: 25% !important;
+}
+
+@media screen and (max-width: 600px) {
+  .player {
+    width: 90% !important;
+  }
+}
+
+.player-skill {
+  width: 150px;
+  border-bottom-color: white !important;
+}
+
+.total-xp {
   font-size: 18px;
-  padding-bottom: 12px;
 }
 
 /* Loading Spinner Styles */

@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-  <script src="main.js"></script>
-  <script src="player.js"></script>
   <link rel="stylesheet" href="style.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,31 +15,21 @@
   </a>
   <!-- Hidden Message | Shows when API data still fetching -->
   <div role="status" id="loading">
-    <span>Fetching Data...
+    <span>Fetching Data & Calculating XP...
       <br />Wise Old Man API limits requests to 500 every 5 minutes...
       <br />This may take a while...
     </span>
+    <br/><br/>
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
   </div>
-  <div class="container">
-    <table id="categories" class="clickable">
-      <tr>
-        <td class="c1 categorySelect currentCategory" onclick="showExperienceData('overall', 'c1')">Overall</td>
-        <td class="c2 categorySelect" onclick="showExperienceData('combat_fast', 'c2')">Combat - Big XP</td>
-        <td class="c3 categorySelect" onclick="showExperienceData('combat_slow', 'c3')">Combat - Melee</td>
-        <td class="c4 categorySelect" onclick="showExperienceData('skilling_buyable', 'c4')">Skilling - Big XP Buyables
-        </td>
-        <td class="c5 categorySelect" onclick="showExperienceData('skilling_fast', 'c5')">Skilling - Fast Gains</td>
-        <td class="c6 categorySelect" onclick="showExperienceData('skilling_slow', 'c6')">Skilling - Slow Gains</td>
-      </tr>
-    </table>
-    <br />
+  <div class="container player">
+    <div id="errorMessage" class="popup"></div>
     <div id="player-name"></div>
     <!-- table for showing data -->
     <table id="individual"></table>
     <br />
-    <h5>Source Code : <a
-        href="https://github.com/ks-imagine/defy-osrs-contests/tree/defy-total-xp-comp-2022" target="_blank">https://github.com/ks-imagine/defy-osrs-contests/tree/defy-total-xp-comp-2022</a>
-    </h5>
+    <script src="main.js"></script>
+    <script src="player.js"></script>
 </body>
 
 </html>

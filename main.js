@@ -262,7 +262,11 @@ calcTotalXP = () => {
       window.PLAYER_ARRAY[i].combatXP + window.PLAYER_ARRAY[i].skillingXP;
   }
   hideLoader();
-  showExperienceData();
+  if (player_page) {
+    window.showPlayerData();
+  } else {
+    showExperienceData();
+  }
 };
 
 /*
@@ -292,76 +296,76 @@ showExperienceData = (category, column) => {
     tab +=
       "<th class='clickable' onclick='sortTable(1)'><em>Combat - Big XP</em></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(2)'>Magic XP<br><img src='./images/Magic_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(2)'>Magic XP<br /><img src='./images/Magic_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(3)'>Ranged XP<br><img src='./images/Ranged_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(3)'>Ranged XP<br /><img src='./images/Ranged_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(4)'>Prayer XP<br><img src='./images/Prayer_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(4)'>Prayer XP<br /><img src='./images/Prayer_icon.png' class='skillIcon'></th>";
   } else if (category == "combat_slow") {
     tab +=
       "<th class='clickable' onclick='sortTable(1)'><em>Combat - Melee</em></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(2)'>Attack XP<br><img src='./images/Attack_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(2)'>Attack XP<br /><img src='./images/Attack_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(3)'>Strength XP<br><img src='./images/Strength_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(3)'>Strength XP<br /><img src='./images/Strength_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(4)'>Defence XP<br><img src='./images/Defence_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(4)'>Defence XP<br /><img src='./images/Defence_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(5)'>Hitpoints XP<br><img src='./images/Hitpoints_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(5)'>Hitpoints XP<br /><img src='./images/Hitpoints_icon.png' class='skillIcon'></th>";
   } else if (category == "skilling_buyable") {
     tab +=
       "<th class='clickable' onclick='sortTable(1)'><em>Skilling - Big XP Buyables</em></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(2)'>Construction XP<br><img src='./images/Construction_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(2)'>Construction XP<br /><img src='./images/Construction_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(3)'>Farming XP<br><img src='./images/Farming_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(3)'>Farming XP<br /><img src='./images/Farming_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(4)'>Fletching XP<br><img src='./images/Fletching_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(4)'>Fletching XP<br /><img src='./images/Fletching_icon.png' class='skillIcon'></th>";
   } else if (category == "skilling_fast") {
     tab +=
       "<th class='clickable' onclick='sortTable(1)'><em>Skilling - Fast Gains</em></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(2)'>Cooking XP<br><img src='./images/Cooking_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(2)'>Cooking XP<br /><img src='./images/Cooking_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(3)'>Herblore XP<br><img src='./images/Herblore_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(3)'>Herblore XP<br /><img src='./images/Herblore_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(4)'>Crafting XP<br><img src='./images/Crafting_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(4)'>Crafting XP<br /><img src='./images/Crafting_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(5)'>Smithing XP<br><img src='./images/Smithing_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(5)'>Smithing XP<br /><img src='./images/Smithing_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(6)'>Firemaking XP<br><img src='./images/Firemaking_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(6)'>Firemaking XP<br /><img src='./images/Firemaking_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(7)'>Thieving XP<br><img src='./images/Thieving_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(7)'>Thieving XP<br /><img src='./images/Thieving_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(8)'>Hunter XP<br><img src='./images/Hunter_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(8)'>Hunter XP<br /><img src='./images/Hunter_icon.png' class='skillIcon'></th>";
   } else if (category == "skilling_slow") {
     tab +=
       "<th class='clickable' onclick='sortTable(1)'><em>Skilling - Slow Gains</em></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(2)'>Agility XP<br><img src='./images/Agility_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(2)'>Agility XP<br /><img src='./images/Agility_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(3)'>Mining XP<br><img src='./images/Mining_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(3)'>Mining XP<br /><img src='./images/Mining_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(4)'>Fishing XP<br><img src='./images/Fishing_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(4)'>Fishing XP<br /><img src='./images/Fishing_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(5)'>Slayer XP<br><img src='./images/Slayer_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(5)'>Slayer XP<br /><img src='./images/Slayer_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(6)'>Runecrafting XP<br><img src='./images/Runecraft_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(6)'>Runecrafting XP<br /><img src='./images/Runecraft_icon.png' class='skillIcon'></th>";
     tab +=
-      "<th class='clickable' onclick='sortTable(7)'>Woodcutting XP<br><img src='./images/Woodcutting_icon.png' class='skillIcon'></th>";
+      "<th class='clickable' onclick='sortTable(7)'>Woodcutting XP<br /><img src='./images/Woodcutting_icon.png' class='skillIcon'></th>";
   }
   tab += "</tr>";
   for (let p of window.PLAYER_ARRAY) {
     if (category == "overall" || !category) {
       tab += `<tr>
-        <td>${p.name}</td>
+        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
         <td>${p.totalXP.toLocaleString("en-US")} </td>
         <td>${p.combatXP.toLocaleString("en-US")} </td>
         <td>${p.skillingXP.toLocaleString("en-US")} </td>
         </tr>`;
     } else if (category == "combat_fast") {
       tab += `<tr>
-        <td>${p.name}</td>
+        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
         <td>${p.combat_fast.toLocaleString("en-US")} </td>
         <td>${p.skills.magic.toLocaleString("en-US")} </td>
         <td>${p.skills.ranged.toLocaleString("en-US")} </td>
@@ -369,7 +373,7 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "combat_slow") {
       tab += `<tr>
-        <td>${p.name}</td>
+        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
         <td>${p.combat_slow.toLocaleString("en-US")} </td>
         <td>${p.skills.attack.toLocaleString("en-US")} </td>
         <td>${p.skills.strength.toLocaleString("en-US")} </td>
@@ -378,7 +382,7 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "skilling_buyable") {
       tab += `<tr>
-        <td>${p.name}</td>
+        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
         <td>${p.skilling_buyable.toLocaleString("en-US")} </td>
         <td>${p.skills.construction.toLocaleString("en-US")} </td>
         <td>${p.skills.farming.toLocaleString("en-US")} </td>
@@ -386,7 +390,7 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "skilling_fast") {
       tab += `<tr>
-        <td>${p.name}</td>
+        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
         <td>${p.skilling_fast.toLocaleString("en-US")} </td>
         <td>${p.skills.cooking.toLocaleString("en-US")} </td>
         <td>${p.skills.herblore.toLocaleString("en-US")} </td>
@@ -398,7 +402,7 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "skilling_slow") {
       tab += `<tr>
-        <td>${p.name}</td>
+        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
         <td>${p.skilling_slow.toLocaleString("en-US")} </td>
         <td>${p.skills.agility.toLocaleString("en-US")} </td>
         <td>${p.skills.mining.toLocaleString("en-US")} </td>
@@ -670,5 +674,7 @@ colorCells = (category) => {
 */
 
 // Add event listeners and run functions
-addSearch();
+if (!player_page) {
+  addSearch();
+}
 getData(competition_url);
