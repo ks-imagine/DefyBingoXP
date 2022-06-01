@@ -187,6 +187,10 @@ sub {
   transform: translateY(4px);
 }
 
+.player-link {
+  text-decoration: underline;
+}
+
 #player-name {
   font-size: 50px;
   padding: 30px 0px;

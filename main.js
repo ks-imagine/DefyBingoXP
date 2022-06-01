@@ -358,14 +358,14 @@ showExperienceData = (category, column) => {
   for (let p of window.PLAYER_ARRAY) {
     if (category == "overall" || !category) {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
         <td>${p.totalXP.toLocaleString("en-US")} </td>
         <td>${p.combatXP.toLocaleString("en-US")} </td>
         <td>${p.skillingXP.toLocaleString("en-US")} </td>
         </tr>`;
     } else if (category == "combat_fast") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
         <td>${p.combat_fast.toLocaleString("en-US")} </td>
         <td>${p.skills.magic.toLocaleString("en-US")} </td>
         <td>${p.skills.ranged.toLocaleString("en-US")} </td>
@@ -373,7 +373,7 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "combat_slow") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
         <td>${p.combat_slow.toLocaleString("en-US")} </td>
         <td>${p.skills.attack.toLocaleString("en-US")} </td>
         <td>${p.skills.strength.toLocaleString("en-US")} </td>
@@ -382,7 +382,7 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "skilling_buyable") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
         <td>${p.skilling_buyable.toLocaleString("en-US")} </td>
         <td>${p.skills.construction.toLocaleString("en-US")} </td>
         <td>${p.skills.farming.toLocaleString("en-US")} </td>
@@ -390,7 +390,7 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "skilling_fast") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
         <td>${p.skilling_fast.toLocaleString("en-US")} </td>
         <td>${p.skills.cooking.toLocaleString("en-US")} </td>
         <td>${p.skills.herblore.toLocaleString("en-US")} </td>
@@ -402,7 +402,7 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "skilling_slow") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
         <td>${p.skilling_slow.toLocaleString("en-US")} </td>
         <td>${p.skills.agility.toLocaleString("en-US")} </td>
         <td>${p.skills.mining.toLocaleString("en-US")} </td>
