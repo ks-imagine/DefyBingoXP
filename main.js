@@ -46,9 +46,9 @@ const all_skills = {
 };
 // manually update
 const player_pets = {
-  "vonzlex" : {
-    "pvm" : "Prince_black_dragon",
-  }
+  vonzlex: {
+    pvm: "Prince_black_dragon",
+  },
 };
 const player_page = window.location.href.includes("player");
 let category, column;
@@ -183,71 +183,50 @@ checkPets = () => {
   for (var i = 0; i < window.PLAYER_ARRAY.length; i++) {
     const currentPlayer = window.PLAYER_ARRAY[i].name.toLowerCase();
     if (currentPlayer in player_pets) {
-        if (player_pets[currentPlayer].pvm) {
-          if (window.PLAYER_ARRAY[i].skills.hitpoints <= 4000000) {
-          window.PLAYER_ARRAY[i].skills.hitpoints += 1000000;
-          window.PLAYER_ARRAY[i].combat_slow += 1000000;
-          } else {
-            window.PLAYER_ARRAY[i].combat_slow += 5000000 - window.PLAYER_ARRAY[i].skills.hitpoints;
-            window.PLAYER_ARRAY[i].skills.hitpoints = 5000000;
-          }
-        }
-        if (player_pets[currentPlayer].farming) {
-          if (window.PLAYER_ARRAY[i].skills.farming <= 1500000) {
-          window.PLAYER_ARRAY[i].skills.farming += 1000000;
-          window.PLAYER_ARRAY[i].skilling_buyable += 1000000;
-          } else {
-            window.PLAYER_ARRAY[i].skilling_buyable += 2500000 - window.PLAYER_ARRAY[i].skills.farming;
-            window.PLAYER_ARRAY[i].skills.farming = 2500000;
-          }
-        }
-        if (player_pets[currentPlayer].thieving) {
-          if (window.PLAYER_ARRAY[i].skills.thieving <= 4000000) {
-          window.PLAYER_ARRAY[i].skills.thieving += 1000000;
-          window.PLAYER_ARRAY[i].skilling_fast += 1000000;
-          } else {
-            window.PLAYER_ARRAY[i].skilling_fast += 5000000 - window.PLAYER_ARRAY[i].skills.thieving;
-            window.PLAYER_ARRAY[i].skills.thieving = 5000000;
-          }
-        }
-        if (player_pets[currentPlayer].hunter) {
-          if (window.PLAYER_ARRAY[i].skills.hunter <= 4000000) {
-          window.PLAYER_ARRAY[i].skills.hunter += 1000000;
-          window.PLAYER_ARRAY[i].skilling_fast += 1000000;
-          } else {
-            window.PLAYER_ARRAY[i].skilling_fast += 5000000 - window.PLAYER_ARRAY[i].skills.hunter;
-            window.PLAYER_ARRAY[i].skills.hunter = 5000000;
-          }
-        }
-        if (player_pets[currentPlayer].agility) {
-          window.PLAYER_ARRAY[i].skills.agility += 1000000;
-          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
-        }
-        if (player_pets[currentPlayer].mining) {
-          window.PLAYER_ARRAY[i].skills.mining += 1000000;
-          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
-        }
-        if (player_pets[currentPlayer].fishing) {
-          window.PLAYER_ARRAY[i].skills.fishing += 1000000;
-          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
-        }
-        if (player_pets[currentPlayer].slayer) {
-          window.PLAYER_ARRAY[i].skills.slayer += 1000000;
-          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
-        }
-        if (player_pets[currentPlayer].runecrafting) {
-          window.PLAYER_ARRAY[i].skills.runecrafting += 1000000;
-          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
-        }
-        if (player_pets[currentPlayer].woodcutting) {
-          window.PLAYER_ARRAY[i].skills.woodcutting += 1000000;
-          window.PLAYER_ARRAY[i].skilling_slow += 1000000;
-        }
+      if (player_pets[currentPlayer].pvm) {
+        window.PLAYER_ARRAY[i].skills.hitpoints += 1000000;
+        window.PLAYER_ARRAY[i].combat_slow += 1000000;
+      }
+      if (player_pets[currentPlayer].farming) {
+        window.PLAYER_ARRAY[i].skills.farming += 1000000;
+        window.PLAYER_ARRAY[i].skilling_buyable += 1000000;
+      }
+      if (player_pets[currentPlayer].thieving) {
+        window.PLAYER_ARRAY[i].skills.thieving += 1000000;
+        window.PLAYER_ARRAY[i].skilling_fast += 1000000;
+      }
+      if (player_pets[currentPlayer].hunter) {
+        window.PLAYER_ARRAY[i].skills.hunter += 1000000;
+        window.PLAYER_ARRAY[i].skilling_fast += 1000000;
+      }
+      if (player_pets[currentPlayer].agility) {
+        window.PLAYER_ARRAY[i].skills.agility += 1000000;
+        window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+      }
+      if (player_pets[currentPlayer].mining) {
+        window.PLAYER_ARRAY[i].skills.mining += 1000000;
+        window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+      }
+      if (player_pets[currentPlayer].fishing) {
+        window.PLAYER_ARRAY[i].skills.fishing += 1000000;
+        window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+      }
+      if (player_pets[currentPlayer].slayer) {
+        window.PLAYER_ARRAY[i].skills.slayer += 1000000;
+        window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+      }
+      if (player_pets[currentPlayer].runecrafting) {
+        window.PLAYER_ARRAY[i].skills.runecrafting += 1000000;
+        window.PLAYER_ARRAY[i].skilling_slow += 1000000;
+      }
+      if (player_pets[currentPlayer].woodcutting) {
+        window.PLAYER_ARRAY[i].skills.woodcutting += 1000000;
+        window.PLAYER_ARRAY[i].skilling_slow += 1000000;
       }
     }
+  }
   calcTotalXP();
-}
-
+};
 
 // Array to calculate skilling XP
 calcTotalXP = () => {
@@ -358,14 +337,18 @@ showExperienceData = (category, column) => {
   for (let p of window.PLAYER_ARRAY) {
     if (category == "overall" || !category) {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${
+        p.name
+      }</a></td>
         <td>${p.totalXP.toLocaleString("en-US")} </td>
         <td>${p.combatXP.toLocaleString("en-US")} </td>
         <td>${p.skillingXP.toLocaleString("en-US")} </td>
         </tr>`;
     } else if (category == "combat_fast") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${
+        p.name
+      }</a></td>
         <td>${p.combat_fast.toLocaleString("en-US")} </td>
         <td>${p.skills.magic.toLocaleString("en-US")} </td>
         <td>${p.skills.ranged.toLocaleString("en-US")} </td>
@@ -373,7 +356,9 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "combat_slow") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${
+        p.name
+      }</a></td>
         <td>${p.combat_slow.toLocaleString("en-US")} </td>
         <td>${p.skills.attack.toLocaleString("en-US")} </td>
         <td>${p.skills.strength.toLocaleString("en-US")} </td>
@@ -382,7 +367,9 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "skilling_buyable") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${
+        p.name
+      }</a></td>
         <td>${p.skilling_buyable.toLocaleString("en-US")} </td>
         <td>${p.skills.construction.toLocaleString("en-US")} </td>
         <td>${p.skills.farming.toLocaleString("en-US")} </td>
@@ -390,7 +377,9 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "skilling_fast") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${
+        p.name
+      }</a></td>
         <td>${p.skilling_fast.toLocaleString("en-US")} </td>
         <td>${p.skills.cooking.toLocaleString("en-US")} </td>
         <td>${p.skills.herblore.toLocaleString("en-US")} </td>
@@ -402,7 +391,9 @@ showExperienceData = (category, column) => {
         </tr>`;
     } else if (category == "skilling_slow") {
       tab += `<tr>
-        <td><a href="./player.html?player=${p.name}" class="player-link">${p.name}</a></td>
+        <td><a href="./player.html?player=${p.name}" class="player-link">${
+        p.name
+      }</a></td>
         <td>${p.skilling_slow.toLocaleString("en-US")} </td>
         <td>${p.skills.agility.toLocaleString("en-US")} </td>
         <td>${p.skills.mining.toLocaleString("en-US")} </td>
@@ -472,41 +463,72 @@ sumXP = () => {
 addPetIcons = (category) => {
   const table = document.getElementById("players");
   for (var i = 1; i < table.rows.length - 1; i++) {
-    const currentPlayer = table.rows[i].cells[0].innerHTML.replace(/(<([^>]+)>)/gi, "").toLowerCase();
+    const currentPlayer = table.rows[i].cells[0].innerHTML
+      .replace(/(<([^>]+)>)/gi, "")
+      .toLowerCase();
     if (currentPlayer in player_pets) {
       if (player_pets[currentPlayer].pvm && category == "combat_slow") {
-        table.rows[i].cells[5].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].pvm}.png" class="pet-icon" title="${player_pets[currentPlayer].pvm}" />`;
+        table.rows[
+          i
+        ].cells[5].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].pvm}.png" class="pet-icon" title="${player_pets[currentPlayer].pvm}" />`;
       }
-      if (player_pets[currentPlayer].farming && category == "skilling_buyable") {
-        table.rows[i].cells[3].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].farming}.png" class="pet-icon" title="${player_pets[currentPlayer].farming}" />`;
+      if (
+        player_pets[currentPlayer].farming &&
+        category == "skilling_buyable"
+      ) {
+        table.rows[
+          i
+        ].cells[3].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].farming}.png" class="pet-icon" title="${player_pets[currentPlayer].farming}" />`;
       }
       if (player_pets[currentPlayer].thieving && category == "skilling_fast") {
-        table.rows[i].cells[7].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].thieving}.png" class="pet-icon" title="${player_pets[currentPlayer].thieving}" />`;
+        table.rows[
+          i
+        ].cells[7].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].thieving}.png" class="pet-icon" title="${player_pets[currentPlayer].thieving}" />`;
       }
       if (player_pets[currentPlayer].hunter && category == "skilling_fast") {
-        table.rows[i].cells[8].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].hunter}.png" class="pet-icon" title="${player_pets[currentPlayer].hunter}" />`;
+        table.rows[
+          i
+        ].cells[8].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].hunter}.png" class="pet-icon" title="${player_pets[currentPlayer].hunter}" />`;
       }
       if (player_pets[currentPlayer].agility && category == "skilling_slow") {
-        table.rows[i].cells[2].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].agility}.png" class="pet-icon" title="${player_pets[currentPlayer].agility}" />`;
+        table.rows[
+          i
+        ].cells[2].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].agility}.png" class="pet-icon" title="${player_pets[currentPlayer].agility}" />`;
       }
       if (player_pets[currentPlayer].mining && category == "skilling_slow") {
-        table.rows[i].cells[3].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].mining}.png" class="pet-icon" title="${player_pets[currentPlayer].mining}" />`;
+        table.rows[
+          i
+        ].cells[3].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].mining}.png" class="pet-icon" title="${player_pets[currentPlayer].mining}" />`;
       }
       if (player_pets[currentPlayer].fishing && category == "skilling_slow") {
-        table.rows[i].cells[4].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].fishing}.png" class="pet-icon" title="${player_pets[currentPlayer].fishing}" />`;
+        table.rows[
+          i
+        ].cells[4].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].fishing}.png" class="pet-icon" title="${player_pets[currentPlayer].fishing}" />`;
       }
       if (player_pets[currentPlayer].slayer && category == "skilling_slow") {
-        table.rows[i].cells[5].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].slayer}.png" class="pet-icon" title="${player_pets[currentPlayer].slayer}" />`;
+        table.rows[
+          i
+        ].cells[5].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].slayer}.png" class="pet-icon" title="${player_pets[currentPlayer].slayer}" />`;
       }
-      if (player_pets[currentPlayer].runecrafting && category == "skilling_slow") {
-        table.rows[i].cells[6].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].runecrafting}.png" class="pet-icon" title="${player_pets[currentPlayer].runecrafting}" />`;
+      if (
+        player_pets[currentPlayer].runecrafting &&
+        category == "skilling_slow"
+      ) {
+        table.rows[
+          i
+        ].cells[6].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].runecrafting}.png" class="pet-icon" title="${player_pets[currentPlayer].runecrafting}" />`;
       }
-      if (player_pets[currentPlayer].woodcutting && category == "skilling_slow") {
-        table.rows[i].cells[7].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].woodcutting}.png" class="pet-icon" title="${player_pets[currentPlayer].woodcutting}" />`;
+      if (
+        player_pets[currentPlayer].woodcutting &&
+        category == "skilling_slow"
+      ) {
+        table.rows[
+          i
+        ].cells[7].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].woodcutting}.png" class="pet-icon" title="${player_pets[currentPlayer].woodcutting}" />`;
       }
     }
   }
-}
+};
 
 window.addPetIconsIndividual = (currentPlayer) => {
   const table = document.getElementById("individual");
@@ -542,7 +564,7 @@ window.addPetIconsIndividual = (currentPlayer) => {
       table.rows[22].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].woodcutting}.png" class="pet-icon" title="${player_pets[currentPlayer].woodcutting}" />`;
     }
   }
-}
+};
 
 window.onerror = () => {
   showErrorMessage(
