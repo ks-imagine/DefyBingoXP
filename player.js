@@ -39,4 +39,5 @@ window.showPlayerData = () => {
     }
   }
   table.innerHTML = tab;
+  window.addPetIconsIndividual(playerName);
 };

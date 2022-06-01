@@ -47,7 +47,7 @@ const all_skills = {
 // manually update
 const player_pets = {
   "vonzlex" : {
-    "pvm" : "./images/pets/Prince_black_dragon.png",
+    "pvm" : "Prince_black_dragon",
   }
 };
 const player_page = window.location.href.includes("player");
@@ -182,7 +182,7 @@ getSkillXP = async (url, skillName, skillCategory) => {
 checkPets = () => {
   for (var i = 0; i < window.PLAYER_ARRAY.length; i++) {
     const currentPlayer = window.PLAYER_ARRAY[i].name.toLowerCase();
-    if (player_pets[currentPlayer]) {
+    if (currentPlayer in player_pets) {
         if (player_pets[currentPlayer].pvm) {
           if (window.PLAYER_ARRAY[i].skills.hitpoints <= 4000000) {
           window.PLAYER_ARRAY[i].skills.hitpoints += 1000000;
@@ -421,6 +421,7 @@ showExperienceData = (category, column) => {
   } else {
     removeActiveCategoryFilter();
     addActiveCategoryFilter(column);
+    addPetIcons(category);
   }
   document.getElementById("searchField").value = "";
   sortTable(1);
@@ -467,6 +468,81 @@ sumXP = () => {
   </tr>`;
   document.getElementById("totals").innerHTML = tab;
 };
+
+addPetIcons = (category) => {
+  const table = document.getElementById("players");
+  for (var i = 1; i < table.rows.length - 1; i++) {
+    const currentPlayer = table.rows[i].cells[0].innerHTML.replace(/(<([^>]+)>)/gi, "").toLowerCase();
+    if (currentPlayer in player_pets) {
+      if (player_pets[currentPlayer].pvm && category == "combat_slow") {
+        table.rows[i].cells[5].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].pvm}.png" class="pet-icon" title="${player_pets[currentPlayer].pvm}" />`;
+      }
+      if (player_pets[currentPlayer].farming && category == "skilling_buyable") {
+        table.rows[i].cells[3].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].farming}.png" class="pet-icon" title="${player_pets[currentPlayer].farming}" />`;
+      }
+      if (player_pets[currentPlayer].thieving && category == "skilling_fast") {
+        table.rows[i].cells[7].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].thieving}.png" class="pet-icon" title="${player_pets[currentPlayer].thieving}" />`;
+      }
+      if (player_pets[currentPlayer].hunter && category == "skilling_fast") {
+        table.rows[i].cells[8].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].hunter}.png" class="pet-icon" title="${player_pets[currentPlayer].hunter}" />`;
+      }
+      if (player_pets[currentPlayer].agility && category == "skilling_slow") {
+        table.rows[i].cells[2].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].agility}.png" class="pet-icon" title="${player_pets[currentPlayer].agility}" />`;
+      }
+      if (player_pets[currentPlayer].mining && category == "skilling_slow") {
+        table.rows[i].cells[3].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].mining}.png" class="pet-icon" title="${player_pets[currentPlayer].mining}" />`;
+      }
+      if (player_pets[currentPlayer].fishing && category == "skilling_slow") {
+        table.rows[i].cells[4].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].fishing}.png" class="pet-icon" title="${player_pets[currentPlayer].fishing}" />`;
+      }
+      if (player_pets[currentPlayer].slayer && category == "skilling_slow") {
+        table.rows[i].cells[5].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].slayer}.png" class="pet-icon" title="${player_pets[currentPlayer].slayer}" />`;
+      }
+      if (player_pets[currentPlayer].runecrafting && category == "skilling_slow") {
+        table.rows[i].cells[6].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].runecrafting}.png" class="pet-icon" title="${player_pets[currentPlayer].runecrafting}" />`;
+      }
+      if (player_pets[currentPlayer].woodcutting && category == "skilling_slow") {
+        table.rows[i].cells[7].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].woodcutting}.png" class="pet-icon" title="${player_pets[currentPlayer].woodcutting}" />`;
+      }
+    }
+  }
+}
+
+window.addPetIconsIndividual = (currentPlayer) => {
+  const table = document.getElementById("individual");
+  if (currentPlayer in player_pets) {
+    if (player_pets[currentPlayer].pvm) {
+      table.rows[9].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].pvm}.png" class="pet-icon" title="${player_pets[currentPlayer].pvm}" />`;
+    }
+    if (player_pets[currentPlayer].farming) {
+      table.rows[23].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].farming}.png" class="pet-icon" title="${player_pets[currentPlayer].farming}" />`;
+    }
+    if (player_pets[currentPlayer].thieving) {
+      table.rows[12].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].thieving}.png" class="pet-icon" title="${player_pets[currentPlayer].thieving}" />`;
+    }
+    if (player_pets[currentPlayer].hunter) {
+      table.rows[16].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].hunter}.png" class="pet-icon" title="${player_pets[currentPlayer].hunter}" />`;
+    }
+    if (player_pets[currentPlayer].agility) {
+      table.rows[10].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].agility}.png" class="pet-icon" title="${player_pets[currentPlayer].agility}" />`;
+    }
+    if (player_pets[currentPlayer].mining) {
+      table.rows[17].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].mining}.png" class="pet-icon" title="${player_pets[currentPlayer].mining}" />`;
+    }
+    if (player_pets[currentPlayer].fishing) {
+      table.rows[19].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].fishing}.png" class="pet-icon" title="${player_pets[currentPlayer].fishing}" />`;
+    }
+    if (player_pets[currentPlayer].slayer) {
+      table.rows[15].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].slayer}.png" class="pet-icon" title="${player_pets[currentPlayer].slayer}" />`;
+    }
+    if (player_pets[currentPlayer].runecrafting) {
+      table.rows[7].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].runecrafting}.png" class="pet-icon" title="${player_pets[currentPlayer].runecrafting}" />`;
+    }
+    if (player_pets[currentPlayer].woodcutting) {
+      table.rows[22].cells[1].innerHTML += `  <img src="./images/pets/${player_pets[currentPlayer].woodcutting}.png" class="pet-icon" title="${player_pets[currentPlayer].woodcutting}" />`;
+    }
+  }
+}
 
 window.onerror = () => {
   showErrorMessage(
