@@ -187,12 +187,7 @@ sub {
   transform: translateY(4px);
 }
 
-.player-link {
-  text-decoration: underline;
-}
-
 .player-link:hover {
-  text-decoration: none;
   color: crimson;
   font-weight: bold;
 }
