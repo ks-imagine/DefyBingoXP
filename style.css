@@ -118,6 +118,13 @@ sub {
   margin: -10px 0px 10px 0px;
 }
 
+.wom-link {
+  color: blue;
+  text-decoration: underline;
+  font-style: italic;
+  padding: 20px 0px 0px;
+}
+
 .popup {
   opacity: 0;
   transition: opacity 2s ease-in-out;
